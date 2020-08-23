@@ -10,3 +10,10 @@
  * console.log(indexOfAll([1, 2, 3, 1, 2, 3], 1)); -> [0, 3]
  * console.log(indexOfAll([1, 2, 3], 4)); -> []
  */
+function indexOfAll(arr, value) {
+  const result = [];
+  arr.forEach((item, index) => item === value && result.push(index));
+  return result;
+}
+
+export default indexOfAll;
