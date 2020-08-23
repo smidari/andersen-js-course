@@ -12,6 +12,7 @@
     "prefer-destructuring": "off",
     "func-names": "off",
     "no-underscore-dangle": "off",
-    "no-console" : 0
+    "no-console" : 0,
+    "no-plusplus": "off"
   }
 }
