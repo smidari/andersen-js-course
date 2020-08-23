@@ -27,6 +27,7 @@ import indexOfAll from './array-practice/task9';
 import membersOnActiveMeetups from './array-practice/task10'; // 1500
 import { task1Old, task1New } from './es-features/task1';
 import { task2Old, task2New } from './es-features/task2';
+import { task3Old, task3New } from './es-features/task3';
 
 // array-practice
 
@@ -82,7 +83,6 @@ const meetups = [
   { name: 'React', isActive: true, members: 500 },
 ];
 console.log(membersOnActiveMeetups(meetups));
-// import { task3Old, task3New } from './es-features/task3';
 // import { task4Old, task4New } from './es-features/task4';
 // import { task5Old, task5New } from './es-features/task5';
 // import { task6Old, task6New } from './es-features/task6';
@@ -105,10 +105,10 @@ console.log('task2 new', task2New(1, 2, 'test', false, 'new', 'best') === 12); /
 
 console.log('=============');
 
-// console.log('task3 old', task3Old(['hello', 'test', 12])); // [ 1, 2, 'hello', 'test', 12 ]
-// console.log('task3 new', task3New(['hello', 'test', 12])); // [ 1, 2, 'hello', 'test', 12 ]
+console.log('task3 old', task3Old(['hello', 'test', 12])); // [ 1, 2, 'hello', 'test', 12 ]
+console.log('task3 new', task3New(['hello', 'test', 12])); // [ 1, 2, 'hello', 'test', 12 ]
 
-// console.log('=============');
+console.log('=============');
 
 // console.log('task4 old', task4Old()); // {x: 10, y: 10, bar: function, baztest: 'new field'}
 // console.log('task4 new', task4New()); // {x: 10, y: 10, bar: function, baztest: 'new field'}
