@@ -28,6 +28,7 @@ import membersOnActiveMeetups from './array-practice/task10'; // 1500
 import { task1Old, task1New } from './es-features/task1';
 import { task2Old, task2New } from './es-features/task2';
 import { task3Old, task3New } from './es-features/task3';
+ import { task4Old, task4New } from './es-features/task4';
 
 // array-practice
 
@@ -83,7 +84,6 @@ const meetups = [
   { name: 'React', isActive: true, members: 500 },
 ];
 console.log(membersOnActiveMeetups(meetups));
-// import { task4Old, task4New } from './es-features/task4';
 // import { task5Old, task5New } from './es-features/task5';
 // import { task6Old, task6New } from './es-features/task6';
 // import { task7Old, task7New } from './es-features/task7';
@@ -110,10 +110,10 @@ console.log('task3 new', task3New(['hello', 'test', 12])); // [ 1, 2, 'hello', '
 
 console.log('=============');
 
-// console.log('task4 old', task4Old()); // {x: 10, y: 10, bar: function, baztest: 'new field'}
-// console.log('task4 new', task4New()); // {x: 10, y: 10, bar: function, baztest: 'new field'}
+console.log('task4 old', task4Old()); // {x: 10, y: 10, bar: function, baztest: 'new field'}
+console.log('task4 new', task4New()); // {x: 10, y: 10, bar: function, baztest: 'new field'}
 
-// console.log('=============');
+console.log('=============');
 
 // console.log('task5 old', task5Old(['test', 42], { name: 'foo', val: 7 })); // ['test', 42, 'foo', 7]
 // console.log('task5 new', task5New(['test', 42], { name: 'foo', val: 7 })); // ['test', 42, 'foo', 7]
