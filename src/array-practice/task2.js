@@ -18,7 +18,7 @@
 function arrayDiff(arr1, arr2) {
   const res1 = arr1.filter(i => !arr2.includes(i));
   const res2 = arr2.filter(i => !arr1.includes(i));
-  return [].concat(res1, res2);
+  return [...res1, ...res2];
 }
 
 export default arrayDiff;
