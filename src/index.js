@@ -28,8 +28,9 @@ import membersOnActiveMeetups from './array-practice/task10'; // 1500
 import { task1Old, task1New } from './es-features/task1';
 import { task2Old, task2New } from './es-features/task2';
 import { task3Old, task3New } from './es-features/task3';
- import { task4Old, task4New } from './es-features/task4';
+import { task4Old, task4New } from './es-features/task4';
 import { task5Old, task5New } from './es-features/task5';
+import { task6Old, task6New } from './es-features/task6';
 
 // array-practice
 
@@ -85,7 +86,6 @@ const meetups = [
   { name: 'React', isActive: true, members: 500 },
 ];
 console.log(membersOnActiveMeetups(meetups));
-// import { task6Old, task6New } from './es-features/task6';
 // import { task7Old, task7New } from './es-features/task7';
 // import { task8Old, task8New } from './es-features/task8';
 // import { task9Old, task9New } from './es-features/task9';
@@ -120,10 +120,10 @@ console.log('task5 new', task5New(['test', 42], { name: 'foo', val: 7 })); // ['
 
 console.log('=============');
 
-// console.log('task6 old', task6Old()); // ['Max', 100, 'Admin', false, '1']
-// console.log('task6 new', task6New()); // ['Max', 100, 'Admin', false, '1']
+console.log('task6 old', task6Old()); // ['Max', 100, 'Admin', false, '1']
+console.log('task6 new', task6New()); // ['Max', 100, 'Admin', false, '1']
 
-// console.log('=============');
+console.log('=============');
 
 // console.log('task7 old', task7Old()); // {test: 0, foo: 1, bar: 2}
 // console.log('task7 new', task7New()); // {test: 0, foo: 1, bar: 2}
