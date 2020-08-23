@@ -19,7 +19,7 @@ B.prototype = Object.create(A.prototype);
 B.prototype.constructor = B;
 
 B.prototype.getName = function(text) {
-  return A.prototype.getName.call(this) + ' ' + text;
+  return `${A.prototype.getName.call(this)} ${text}`;
 };
 
 B.prototype.getAge = function() {
@@ -31,16 +31,16 @@ B.defaultUser = function() {
 };
 
 Object.defineProperty(B.prototype, 'color', {
-  get: function() {
+  get() {
     return this._color;
   },
-  set: function(color) {
+  set(color) {
     this._color = color;
   },
 });
 
 export function task10Old() {
-  var b = new B('Max', 12);
+  const b = new B('Max', 12);
   console.log(b.getName('Best')); // Max Best
   console.log(b.getAge()); // 12
   console.log(B.defaultUser()); // {name: 'test', age: 0}

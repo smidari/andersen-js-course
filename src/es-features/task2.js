@@ -9,7 +9,7 @@
  */
 
 export function task2Old(a, b) {
-  var data = Array.prototype.slice.call(arguments, 2);
+  const data = Array.prototype.slice.call(arguments, 2);
   return (a + b) * data.length;
 }
 

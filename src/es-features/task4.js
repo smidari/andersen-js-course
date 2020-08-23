@@ -7,12 +7,12 @@
  */
 
 export function task4Old() {
-  var x = 10;
-  var y = 20;
+  const x = 10;
+  const y = 20;
 
-  var obj = {
-    x: x,
-    y: y,
+  const obj = {
+    x,
+    y,
     bar: function bar() {
       return this.x + this.y;
     },
@@ -22,7 +22,7 @@ export function task4Old() {
     return 'test';
   }
 
-  obj['baz' + foo()] = 'new field';
+  obj[`baz${foo()}`] = 'new field';
 
   return obj;
 }

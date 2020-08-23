@@ -15,6 +15,14 @@
  *
  * Для задач на array-practice импортируйте написанные функции сюда и проверяйте их работу тут.
  */
+import any from './array-practice/task1';
+
+// array-practice
+
+// task 1
+console.log(any([0, 1, 2, 0], x => x >= 2)); // true ;
+console.log(any([0, 0, 1, 0])); // true;
+console.log(any([0, 0, 0, 0])); // false;
 
 // import { task1Old, task1New } from './es-features/task1';
 // import { task2Old, task2New } from './es-features/task2';

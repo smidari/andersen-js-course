@@ -6,10 +6,8 @@
  */
 
 export function task9Old() {
-  var result = 'test'.indexOf('est') !== -1;
-  var findResult = [22, 1, 90, 70].filter(function(x) {
-    return x < 3;
-  })[0];
+  const result = 'test'.indexOf('est') !== -1;
+  const findResult = [22, 1, 90, 70].filter(x => x < 3)[0];
 
   return [result, findResult];
 }
