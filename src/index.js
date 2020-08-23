@@ -22,6 +22,7 @@ import union from './array-practice/task4';
 import createGenerator from './array-practice/task5';
 import transformArrayToNumber from './array-practice/task6';
 import take from './array-practice/task7';
+import without from './array-practice/task8';
 
 // array-practice
 
@@ -60,6 +61,10 @@ console.log(transformArrayToNumber([10, 20, 30], (acc, item) => acc - item)); //
 // task 7
 console.log(take([1, 2, 3], 5)); // -> [1, 2, 3]
 console.log(take([1, 2, 3], 2)); // -> [1, 2]
+
+// task 8
+console.log(without([2, 1, 2, 3], 1, 2)); //  -> [3]
+console.log(without([2, 1, 10, 20], 1, 2)); // -> [10, 20]
 // import { task1Old, task1New } from './es-features/task1';
 // import { task2Old, task2New } from './es-features/task2';
 // import { task3Old, task3New } from './es-features/task3';
