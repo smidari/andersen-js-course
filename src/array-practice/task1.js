@@ -15,8 +15,7 @@
  * console.log(any([0, 0, 0, 0])); -> false
  */
 
-function any(arr, callback) {
-  return callback === undefined ? arr.some(item => !!item) : arr.some(callback);
-}
+const any = (arr, callback) =>
+  callback === undefined ? arr.some(item => !!item) : arr.some(callback);
 
 export default any;

@@ -12,9 +12,6 @@
  * console.log(without([2, 1, 10, 20], 1, 2)) -> [10, 20]
  */
 
-function without(arr, ...values) {
-  const withoutValues = [...values];
-  return arr.filter(i => !withoutValues.includes(i));
-}
+const without = (arr, ...values) => arr.filter(i => !values.includes(i));
 
 export default without;

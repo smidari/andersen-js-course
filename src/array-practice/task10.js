@@ -17,8 +17,7 @@
 //   { name: 'React', isActive: true, members: 500 },
 // ];
 
-function membersOnActiveMeetups(meetups) {
-  return meetups.reduce((sum, item) => (item.isActive ? sum + item.members : sum), 0);
-}
+const membersOnActiveMeetups = meetups =>
+  meetups.reduce((sum, item) => (item.isActive ? sum + item.members : sum), 0);
 
 export default membersOnActiveMeetups;

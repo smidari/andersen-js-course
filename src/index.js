@@ -34,64 +34,89 @@ import { task6Old, task6New } from './es-features/task6';
 import { task7Old, task7New } from './es-features/task7';
 import { task8Old, task8New } from './es-features/task8';
 import { task9Old, task9New } from './es-features/task9';
+import { task10Old, task10New } from './es-features/task10';
 
-// array-practice
+console.log('=======array-practice=====');
+console.log(
+  'task1',
+  any([0, 1, 2, 0], x => x >= 2)
+);
+console.log('task1', any([0, 0, 1, 0])); // true;
+console.log('task1', any([0, 0, 0, 0])); // false;
 
-// task 1
-console.log(any([0, 1, 2, 0], x => x >= 2)); // true ;
-console.log(any([0, 0, 1, 0])); // true;
-console.log(any([0, 0, 0, 0])); // false;
+console.log('=============');
 
-// task 2
-console.log(arrayDiff([1, 2, 3], [1, 2, 4])); // [3, 4]
-console.log(arrayDiff([1, 3, 3, 4], [1, 3, '4'])); // [4, '4']
+console.log('task2', arrayDiff([1, 2, 3], [1, 2, 4])); // [3, 4]
+console.log('task2', arrayDiff([1, 3, 3, 4], [1, 3, '4'])); // [4, '4']
 
-// task 3
+console.log('=============');
+
 forEachRight([1, 2, 3, 4], val => console.log(val)); // в консоль 4 3 2 1
 
-// task 4
-console.log(union([5, 1, 2, 3, 3], [4, 3, 2])); // [5, 1, 2, 3, 4]
-console.log(union([5, 1, 3, 3, 4], [1, 3, 4])); //  [5, 1, 3, 4]
+console.log('=============');
 
-// task 5
+console.log('task4', union([5, 1, 2, 3, 3], [4, 3, 2])); // [5, 1, 2, 3, 4]
+console.log('task4', union([5, 1, 3, 3, 4], [1, 3, 4])); //  [5, 1, 3, 4]
+
+console.log('=============');
+
 const generator = createGenerator([1, '6', 3, 2]);
-console.log(generator.next()); // -> 1
-console.log(generator.next()); // -> '6'
-console.log(generator.next()); // -> 3
-console.log(generator.next()); // -> 2
-console.log(generator.next()); // -> 'Complete!'
-console.log(generator.next()); // -> 'Complete!'
+console.log('task5', generator.next()); // -> 1
+console.log('task5', generator.next()); // -> '6'
+console.log('task5', generator.next()); // -> 3
+console.log('task5', generator.next()); // -> 2
+console.log('task5', generator.next()); // -> 'Complete!'
+console.log('task5', generator.next()); // -> 'Complete!'
 
-// task 6
-console.log(transformArrayToNumber([10, 20, 30], (acc, item) => acc + item)); // -> 60
-console.log(transformArrayToNumber([10, 20, 30], (acc, item) => acc + item, 10)); // -> 70
-console.log(transformArrayToNumber([10, 20, 30], (acc, item) => acc * item)); // -> 0
-console.log(transformArrayToNumber([10, 20, 30], (acc, item) => acc * item, 1)); // -> 6000
-console.log(transformArrayToNumber([10, 20, 30], (acc, item) => acc - item)); // -> -60
+console.log('=============');
 
-// task 7
-console.log(take([1, 2, 3], 5)); // -> [1, 2, 3]
-console.log(take([1, 2, 3], 2)); // -> [1, 2]
+console.log(
+  'task6',
+  transformArrayToNumber([10, 20, 30], (acc, item) => acc + item)
+); // -> 60
+console.log(
+  'task6',
+  transformArrayToNumber([10, 20, 30], (acc, item) => acc + item, 10)
+); // -> 70
+console.log(
+  'task6',
+  transformArrayToNumber([10, 20, 30], (acc, item) => acc * item)
+); // -> 0
+console.log(
+  'task6',
+  transformArrayToNumber([10, 20, 30], (acc, item) => acc * item, 1)
+); // -> 6000
+console.log(
+  'task6',
+  transformArrayToNumber([10, 20, 30], (acc, item) => acc - item)
+); // -> -60
 
-// task 8
-console.log(without([2, 1, 2, 3], 1, 2)); //  -> [3]
-console.log(without([2, 1, 10, 20], 1, 2)); // -> [10, 20]
+console.log('=============');
 
-// task 9
-console.log(indexOfAll([1, 2, 3, 1, 2, 3], 1)); // -> [0, 3]
-console.log(indexOfAll([1, 2, 3], 4)); //  -> []
+console.log('task7', take([1, 2, 3], 5)); // -> [1, 2, 3]
+console.log('task7', take([1, 2, 3], 2)); // -> [1, 2]
 
-// task 10
+console.log('=============');
+
+console.log('task8', without([2, 1, 2, 3], 1, 2)); //  -> [3]
+console.log('task8', without([2, 1, 10, 20], 1, 2)); // -> [10, 20]
+
+console.log('=============');
+
+console.log('task9', indexOfAll([1, 2, 3, 1, 2, 3], 1)); // -> [0, 3]
+console.log('task9', indexOfAll([1, 2, 3], 4)); //  -> []
+
+console.log('=============');
+
 const meetups = [
   { name: 'JavaScript', isActive: true, members: 100 },
   { name: 'Angular', isActive: true, members: 900 },
   { name: 'Node', isActive: false, members: 600 },
   { name: 'React', isActive: true, members: 500 },
 ];
-console.log(membersOnActiveMeetups(meetups));
-// import { task10Old, task10New } from './es-features/task10';
+console.log('task10', membersOnActiveMeetups(meetups));
 
-// es-features
+console.log('======es-feature=======');
 
 console.log('task1 old', task1Old(10) === 500); // true
 console.log('task1 new', task1New(10) === 500); // true
@@ -138,7 +163,7 @@ console.log('task9 new', task9New()); // [true, 1]
 
 console.log('=============');
 
-// console.log('task10 old', task10Old()); // {name: 'Max', age: 12, color: red}
-// console.log('task10 new', task10New()); // {name: 'Max', age: 12, color: red}
+console.log('task10 old', task10Old()); // {name: 'Max', age: 12, color: red}
+console.log('task10 new', task10New()); // {name: 'Max', age: 12, color: red}
 
-// console.log('=============');
+console.log('=============');

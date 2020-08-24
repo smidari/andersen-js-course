@@ -19,12 +19,7 @@
 function createGenerator(arr) {
   let item = 0;
   return {
-    next: function() {
-      if (item === arr.length) {
-        return 'Complete';
-      }
-      return arr[item++];
-    },
+    next: () => (item === arr.length ? 'Complete' : arr[item++]),
   };
 }
 
