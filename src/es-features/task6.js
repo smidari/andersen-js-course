@@ -35,7 +35,6 @@ export const task6New = () => {
     role: { name: 'Admin' },
     cases: [{ id: '1' }],
   });
-
   const {
     name,
     value,
@@ -43,5 +42,6 @@ export const task6New = () => {
     isActive = false,
     cases: [{ id }],
   } = userModule();
+
   return [name, value, role, isActive, id];
 };

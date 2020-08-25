@@ -12,6 +12,4 @@
  * console.log(take([1, 2, 3], 2)); -> [1, 2]
  */
 
-const take = (arr, value) => arr.slice(0, value);
-
-export default take;
+export const take = (arr, value) => arr.slice(0, value);

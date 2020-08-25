@@ -16,11 +16,9 @@
  * generator.next(); -> 'Complete!'
  */
 
-function createGenerator(arr) {
+export function createGenerator(arr) {
   let item = 0;
   return {
     next: () => (item === arr.length ? 'Complete' : arr[item++]),
   };
 }
-
-export default createGenerator;
