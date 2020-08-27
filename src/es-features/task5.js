@@ -6,10 +6,10 @@
  */
 
 export function task5Old(array, obj) {
-  const name = array[0];
-  const val = array[1];
-  const objName = obj.name;
-  const objValue = obj.val;
+  var name = array[0];
+  var val = array[1];
+  var objName = obj.name;
+  var objValue = obj.val;
   return [name, val, objName, objValue];
 }
 

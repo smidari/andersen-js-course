@@ -7,12 +7,12 @@
  */
 
 export function task8Old() {
-  const obj = {
+  var obj = {
     nums: [0, 2, 5, 10, 15],
     fives: [],
-    calculateNumsFive() {
-      const self = this;
-      this.nums.forEach(v => {
+    calculateNumsFive: function() {
+      var self = this;
+      this.nums.forEach(function(v) {
         if (v % 5 === 0) {
           self.fives.push(v);
         }

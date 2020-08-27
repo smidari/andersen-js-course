@@ -15,12 +15,12 @@ export function task6Old() {
     };
   }
 
-  const tmp = userModule();
-  const { name } = tmp;
-  const { value } = tmp;
-  const role = tmp.role.name;
-  const isActive = tmp.isActive === undefined ? false : tmp.isActive;
-  const firstCaseId = tmp.cases[0].id;
+  var tmp = userModule();
+  var name = tmp.name;
+  var value = tmp.value;
+  var role = tmp.role.name;
+  var isActive = tmp.isActive === undefined ? false : tmp.isActive;
+  var firstCaseId = tmp.cases[0].id;
 
   return [name, value, role, isActive, firstCaseId];
 }

@@ -8,10 +8,10 @@
  */
 
 export function task7Old() {
-  const obj = { test: 0 };
-  const obj2 = { foo: 1, bar: 2 };
+  var obj = { test: 0 };
+  var obj2 = { foo: 1, bar: 2 };
 
-  Object.keys(obj2).forEach(k => {
+  Object.keys(obj2).forEach(function(k) {
     obj[k] = obj2[k];
   });
 
