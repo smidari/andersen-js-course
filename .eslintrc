@@ -11,6 +11,9 @@
     "vars-on-top": "off",
     "prefer-destructuring": "off",
     "func-names": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "no-console" : 0,
+    "no-plusplus": "off",
+    "import/prefer-default-export": "off"
   }
 }

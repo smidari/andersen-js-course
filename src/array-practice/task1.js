@@ -14,3 +14,6 @@
  * console.log(any([0, 0, 1, 0])); -> true
  * console.log(any([0, 0, 0, 0])); -> false
  */
+
+export const any = (arr, callback) =>
+  callback === undefined ? arr.some(item => !!item) : arr.some(callback);
