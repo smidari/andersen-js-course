@@ -1,8 +1,81 @@
 body {
-  margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: url("../images/background.jpg") center;
 }
 
-h1 {
-  text-align: center;
+.wrapper {
+    padding: 50px;
 }
+
+.main_items {
+    float: left;
+    width: 21%;
+    height: 600px;
+    box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
+    text-align: center;
+}
+
+h3 {
+    color: white;
+}
+
+.main_items_lists, .improves_items_lists {
+    padding: 10px;
+}
+
+.main_items_lists div, .improves_items_lists div {
+    float: left;
+}
+
+.main_items_lists img, .improves_items_list img {
+    width: 60px;
+    margin: 2px;
+    transition: .3s;
+}
+
+.main_items_lists img:hover, .improves_items_lists img:hover {
+    box-shadow: 0 2px 9px 0 rgba(255, 255, 255, 1);
+}
+
+.improves_items {
+    float: right;
+    width: 21%;
+    margin-left: 4%;
+    height: 600px;
+    box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
+    position: relative;
+    text-align: center;
+}
+
+.improves_items_footer {
+    position: absolute;
+    bottom: 15px;
+    right: 8%;
+}
+
+.myButton {
+    background: linear-gradient(to bottom, #ebaaeb 5%, #3b113b 100%);
+    background-color: #ebaaeb;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 9px 12px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+.myButton:hover {
+    background: linear-gradient(to bottom, #3b113b 5%, #ebaaeb 100%);
+    background-color: #f3f8fa;
+}
+
+.myButton:active {
+    position: relative;
+    top: 1px;
+}
+
