@@ -3,9 +3,9 @@ import './styles/main.css';
 import { v1 } from 'uuid';
 import Controller from './controller';
 import { EventEmitter, load, save } from './helper';
+import ModelImprovesItems from './model/ModelImprovesItems';
+import ModelMainItems from './model/ModelMainItems';
 import PageView from './view/pageView';
-import ModelImprovesItems from './ModelImprovesItems';
-import ModelMainItems from './ModelMainItems';
 
 export type mainItem = {
   id: string;
@@ -230,6 +230,9 @@ export const globalEventEmitter = new EventEmitter();
 
 globalEventEmitter.subscribe('changeMainItems', (state: Array<mainItem>) =>
   save('mainItems', state)
+);
+globalEventEmitter.subscribe('changeImprovesItems', (state: Array<improvesItem>) =>
+  save('improvesItems', state)
 );
 
 const mainItemsModel = new ModelMainItems(load('mainItems') || undefined);

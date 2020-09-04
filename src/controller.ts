@@ -1,6 +1,6 @@
 import { globalEventEmitter, improvesItem } from './index';
 import { mainItemType } from './view/MainItemView';
-import  { dataRenderPageViewType } from './view/pageView';
+import { dataRenderPageViewType } from './view/pageView';
 
 type mainItemsModelType = {
   items: Array<mainItemType>;
@@ -8,6 +8,7 @@ type mainItemsModelType = {
 };
 type improvesItemsModelType = {
   items: Array<improvesItem>;
+  selectedItem: (id: string) => void;
 };
 type ViewType = {
   render: (data: dataRenderPageViewType) => HTMLElement | null;
@@ -30,11 +31,20 @@ class Controller {
     this.view = view;
 
     globalEventEmitter.subscribe('selected', this.selectedMainItem.bind(this));
+    globalEventEmitter.subscribe('selectedImproveItem', this.selectedImproveItem.bind(this));
     view.render({ mainItems: mainItemsModel.items, improvesItems: improvesItemsModel.items });
   }
 
   selectedMainItem(id: { id: string }) {
     this.mainItemsModel.selectedItem(id.id);
+    this.view.render({
+      mainItems: this.mainItemsModel.items,
+      improvesItems: this.improvesItemsModel.items,
+    });
+  }
+
+  selectedImproveItem(id: { id: string }) {
+    this.improvesItemsModel.selectedItem(id.id);
     this.view.render({
       mainItems: this.mainItemsModel.items,
       improvesItems: this.improvesItemsModel.items,

@@ -10,7 +10,6 @@ export class SecretShopMainItemsView {
     const div2 = createElement('div', {}, img2);
     const img3 = createElement('img', {});
     const div3 = createElement('div', {}, img3);
-    // let empty: Array<any> = [];
     data.forEach(item => {
       if (item.selected) {
         const img = createElement('img', { alt: `${item.name}`, src: item.img });

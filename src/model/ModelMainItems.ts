@@ -1,6 +1,6 @@
-import { globalEventEmitter } from './index';
+import { globalEventEmitter } from '../index';
 // @ts-ignore
-import { mainItemType } from './view/MainItemView';
+import { mainItemType } from '../view/MainItemView';
 
 class ModelMainItems {
   items: Array<mainItemType>;

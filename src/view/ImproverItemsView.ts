@@ -1,6 +1,6 @@
 import { createElement } from '../helper';
 import { improvesItem } from '../index';
-import { MainItemView } from './MainItemView';
+import { ImproverItemView } from './ImproverItemView';
 
 export class ImproverItemsView {
   items: Array<improvesItem>;
@@ -11,10 +11,8 @@ export class ImproverItemsView {
 
   render(data: Array<improvesItem>) {
     const div = createElement('div', { className: 'improves_items_lists' });
-
     data.forEach(item => {
-      const newItem = new MainItemView(item);
-
+      const newItem = new ImproverItemView(item);
       return div.appendChild(newItem.render(item));
     });
     return div;
