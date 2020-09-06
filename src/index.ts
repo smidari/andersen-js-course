@@ -35,7 +35,7 @@ globalEventEmitter.subscribe('changeMainItems', (state: Array<MainItem>) =>
 // globalEventEmitter.subscribe('changeImprovesItems', (state: Array<improvesItem>) =>
 //   save('improvesItems', state)
 // );
-//
+
 const mainItemsModel = new MainItemsModel(load('mainItems') || undefined);
 const mainItemsView = new MainItemsView();
 const mainItemsController = new MainItemsController(mainItemsModel, mainItemsView);
