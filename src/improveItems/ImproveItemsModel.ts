@@ -1,11 +1,10 @@
 import { globalEventEmitter } from '../index';
-// @ts-ignore
-import { mainItemType } from '../view/MainItemView';
+import { ImprovesItem } from '../data/data';
 
-class ModelMainItems {
-  items: Array<mainItemType>;
+export class ImproveItemsModel {
+  items: Array<ImprovesItem>;
 
-  constructor(items: Array<mainItemType>) {
+  constructor(items: Array<ImprovesItem>) {
     this.items = items;
   }
 
@@ -18,8 +17,6 @@ class ModelMainItems {
       }
       return value;
     });
-    globalEventEmitter.emit('changeMainItems', newItems);
+    globalEventEmitter.emit('changeImprovesItems', newItems);
   }
 }
-
-export default ModelMainItems;

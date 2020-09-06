@@ -1,5 +1,3 @@
-import { improvesItem, mainItem } from './index';
-
 type propsType = {
   className?: string;
   class?: string;
@@ -10,15 +8,6 @@ type propsType = {
   sss?: string;
 };
 type childrenType = Array<HTMLElement | string>;
-
-export function save(key: string, data: Array<mainItem> | Array<improvesItem>) {
-  localStorage.setItem(key, JSON.stringify(data));
-}
-
-export function load(key: string) {
-  const data: string | null = localStorage.getItem(key);
-  return JSON.parse(<string>data);
-}
 
 export function createElement(tagName: string, props: propsType, ...children: childrenType) {
   const element = document.createElement(tagName);
@@ -36,25 +25,4 @@ export function createElement(tagName: string, props: propsType, ...children: ch
   });
 
   return element;
-}
-
-export class EventEmitter {
-  private events: {
-    [key: string]: Array<Function>;
-  };
-
-  constructor() {
-    this.events = {};
-  }
-
-  subscribe(type: string, listener: any) {
-    this.events[type] = this.events[type] || [];
-    this.events[type].push(listener);
-  }
-
-  emit(type: string, arg: any) {
-    if (this.events[type]) {
-      this.events[type].forEach(listener => listener(arg));
-    }
-  }
 }
