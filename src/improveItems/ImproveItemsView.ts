@@ -2,10 +2,10 @@ import { ImprovesItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 
 export class ImproveItemsView {
-  div: HTMLDivElement | null;
+  divWrapper: HTMLDivElement;
 
   constructor() {
-    this.div = document.querySelector('.wrapper');
+    this.divWrapper = document.querySelector('.wrapper') as HTMLDivElement;
   }
 
   handelSelected({ target }: any) {
@@ -21,20 +21,17 @@ export class ImproveItemsView {
   }
 
   render(data: Array<ImprovesItem>) {
-    if (this.div) {
-      const h3ImprovesItem = createElement('h3', {}, 'Improves items');
-      const div = createElement('div', { className: 'improves_items_lists' });
-      data.forEach(item => {
-        return div.appendChild(this.createItem(item));
-      });
-      const divImprovesItems = createElement(
-        'div',
-        { className: 'improves_items' },
-        h3ImprovesItem,
-        div
-      );
-      return this.div.appendChild(divImprovesItems);
-    }
-    return this.div;
+    const h3ImprovesItem = createElement('h3', {}, 'Improves items');
+    const div = createElement('div', { className: 'improves_items_lists' });
+    data.forEach(item => {
+      return div.appendChild(this.createItem(item));
+    });
+    const divImprovesItems = createElement(
+      'div',
+      { className: 'improves_items' },
+      h3ImprovesItem,
+      div
+    );
+    return this.divWrapper.appendChild(divImprovesItems);
   }
 }

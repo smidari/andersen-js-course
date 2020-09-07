@@ -3,11 +3,11 @@ import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
 
 export class MainItemsView extends EventEmitter {
-  div: HTMLDivElement | null;
+  divWrapper: HTMLDivElement;
 
   constructor() {
     super();
-    this.div = document.querySelector('.wrapper');
+    this.divWrapper = document.querySelector('.wrapper') as HTMLDivElement;
   }
 
   handelSelected({ target }: any) {
@@ -23,16 +23,12 @@ export class MainItemsView extends EventEmitter {
   }
 
   render(data: Array<MainItem>) {
-    if (this.div) {
-      const h3MainItem = createElement('h3', {}, 'Main items');
-      const div = createElement('div', { className: 'main_items_lists' });
-      data.forEach(item => {
-        return div.appendChild(this.createItem(item));
-      });
-      const divMainItem = createElement('div', { className: 'main_items' }, h3MainItem, div);
-
-      return this.div.appendChild(divMainItem);
-    }
-    return this.div;
+    const h3MainItem = createElement('h3', {}, 'Main items');
+    const div = createElement('div', { className: 'main_items_lists' });
+    data.forEach(item => {
+      return div.appendChild(this.createItem(item));
+    });
+    const divMainItem = createElement('div', { className: 'main_items' }, h3MainItem, div);
+    return this.divWrapper.appendChild(divMainItem);
   }
 }
