@@ -1,7 +1,9 @@
 import { SelectedItems } from './SecretShopView';
+import { ImprovesItem, MainItem } from '../data/data';
 
 type SecretShopModelType = {
-  items: SelectedItems;
+  improveItemSelected: ImprovesItem | {};
+  mainItemsSelected: Array<MainItem> | [];
 };
 
 type ViewType = {
@@ -17,6 +19,9 @@ export class SecretShopController {
     this.model = model;
     this.view = view;
 
-    view.render(this.model.items);
+    view.render({
+      mainItemsSelected: this.model.mainItemsSelected,
+      improveItemSelected: this.model.improveItemSelected,
+    });
   }
 }

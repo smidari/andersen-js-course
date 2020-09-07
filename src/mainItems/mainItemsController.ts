@@ -1,9 +1,11 @@
-import { MainItem } from '../data/data';
-import { globalEventEmitter } from '../index';
+import { MainItem, mainItemsDefault } from '../data/data';
+import { load } from '../utils/localStorageFunctions';
+import { Item } from './mainItemsModel';
 
 type MainItemsModelType = {
   items: Array<MainItem>;
-  selectedItem: (id: string) => void;
+  setData: (data: Array<MainItem>) => void;
+  getData: () => Array<MainItem>;
 };
 
 type ViewType = {
@@ -19,12 +21,15 @@ export class MainItemsController {
     this.model = model;
     this.view = view;
 
-    globalEventEmitter.subscribe('selected', this.selectedMainItem.bind(this));
-    view.render(this.model.items);
+    model.setData(this.getDataFromLocalStorage());
+    view.render(this.model.getData());
   }
 
-  selectedMainItem(id: { id: string }) {
-    this.model.selectedItem(id.id);
-    this.view.render(this.model.items);
+  getDataFromLocalStorage() {
+    return load('mainItems')
+      ? load('mainItems')
+      : mainItemsDefault.map(item => {
+          return Object.assign(new Item(item.name, item.img), item);
+        });
   }
 }

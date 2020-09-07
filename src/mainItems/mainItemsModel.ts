@@ -1,22 +1,40 @@
-import { globalEventEmitter } from '../index';
+import { v1 } from 'uuid';
 import { MainItem } from '../data/data';
+import { save } from '../utils/localStorageFunctions';
 
 export class MainItemsModel {
   items: Array<MainItem>;
 
-  constructor(items: Array<MainItem>) {
-    this.items = items;
+  constructor() {
+    this.items = [];
   }
 
-  selectedItem(id: string) {
-    const newItems = this.items.map(value => {
-      if (value.id === id) {
-        // eslint-disable-next-line no-param-reassign
-        value.selected = !value.selected;
-        return value;
-      }
-      return value;
-    });
-    globalEventEmitter.emit('changeMainItems', newItems);
+  setData(data: Array<MainItem>) {
+    this.items = data;
+    this.saveDataToLocalStorage();
+  }
+
+  getData() {
+    return this.items;
+  }
+
+  saveDataToLocalStorage() {
+    save('mainItems', this.items);
+  }
+}
+export class Item {
+  id: string;
+
+  name: string;
+
+  img: string;
+
+  selected: boolean;
+
+  constructor(name: string, image: string) {
+    this.id = v1();
+    this.name = name;
+    this.img = image;
+    this.selected = false;
   }
 }

@@ -2,8 +2,8 @@ import { ImprovesItem, MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 
 export type SelectedItems = {
-  improveItem: ImprovesItem;
-  mainItems: Array<MainItem>;
+  mainItemsSelected: Array<MainItem> | [];
+  improveItemSelected: ImprovesItem | {};
 };
 
 export class SecretShopView {

@@ -1,9 +1,11 @@
-import { ImprovesItem } from '../data/data';
-import { globalEventEmitter } from '../index';
+import { ImprovesItem, improvesItemsDefault } from '../data/data';
+import { load } from '../utils/localStorageFunctions';
+import { Item } from '../mainItems/mainItemsModel';
 
 type improvesItemsModelType = {
   items: Array<ImprovesItem>;
-  selectedItem: (id: string) => void;
+  setData: (data: Array<ImprovesItem>) => void;
+  getData: () => Array<ImprovesItem>;
 };
 type ViewType = {
   render: (data: Array<ImprovesItem>) => HTMLElement | null;
@@ -18,12 +20,15 @@ export class ImproveItemsController {
     this.model = model;
     this.view = view;
 
-    globalEventEmitter.subscribe('selectedImproveItem', this.selectedImproveItem.bind(this));
-    view.render(model.items);
+    model.setData(this.getDataFromLocalStorage());
+    view.render(this.model.getData());
   }
 
-  selectedImproveItem(id: { id: string }) {
-    this.model.selectedItem(id.id);
-    this.view.render(this.model.items);
+  getDataFromLocalStorage() {
+    return load('improvesItems')
+      ? load('improvesItems')
+      : improvesItemsDefault.map(item => {
+          return Object.assign(new Item(item.name, item.img), item);
+        });
   }
 }

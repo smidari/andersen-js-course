@@ -1,9 +1,12 @@
-import { SelectedItems } from './SecretShopView';
+import { ImprovesItem, MainItem } from '../data/data';
 
 export class SecretShopModel {
-  items: SelectedItems;
+  improveItemSelected: ImprovesItem | {};
 
-  constructor(items: SelectedItems) {
-    this.items = items;
+  mainItemsSelected: Array<MainItem>;
+
+  constructor() {
+    this.mainItemsSelected = [];
+    this.improveItemSelected = {};
   }
 }

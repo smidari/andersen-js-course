@@ -1,7 +1,6 @@
-import { globalEventEmitter } from '../index';
 import { MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
-import { EventEmitter } from '../utils/EventEmiter';
+import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
 
 export class MainItemsView extends EventEmitter {
   div: HTMLDivElement | null;
@@ -13,7 +12,7 @@ export class MainItemsView extends EventEmitter {
 
   handelSelected({ target }: any) {
     const id = target.parentNode.getAttribute('data-id');
-    globalEventEmitter.emit('selected', { id });
+    // globalEventEmitter.emit(SELECTED, { id });
   }
 
   createItem(data: MainItem) {

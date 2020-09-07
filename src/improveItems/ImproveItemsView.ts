@@ -1,4 +1,3 @@
-import { globalEventEmitter } from '../index';
 import { ImprovesItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 
@@ -10,9 +9,8 @@ export class ImproveItemsView {
   }
 
   handelSelected({ target }: any) {
-    console.log('clock');
     const id = target.parentNode.getAttribute('data-id');
-    globalEventEmitter.emit('selectedImproveItem', { id });
+    // globalEventEmitter.emit('selectedImproveItem', { id });
   }
 
   createItem(data: ImprovesItem) {

@@ -1,0 +1,2 @@
+export const SELECTED = 'SELECTED';
+export const MAIN_ITEMS_CHANGED = 'MAIN_ITEMS_CHANGED';
