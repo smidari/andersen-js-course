@@ -1,35 +1,45 @@
 import { MainItem, mainItemsDefault } from '../data/data';
 import { load } from '../utils/localStorageFunctions';
-import { Item } from './mainItemsModel';
-
-type MainItemsModelType = {
-  items: Array<MainItem>;
-  setData: (data: Array<MainItem>) => void;
-  getData: () => Array<MainItem>;
-};
-
-type ViewType = {
-  render: (data: Array<MainItem>) => HTMLElement | null;
-};
+import { Item, MainItemsModelType } from './mainItemsModel';
+import { SELECTED, UN_SELECTED_MAIN_ITEM } from '../utils/eventEmiter/events';
+import { globalEventEmitter } from '../index';
+import { MainItemsViewType } from './mainItemsView';
 
 export class MainItemsController {
   model: MainItemsModelType;
+  view: MainItemsViewType;
 
-  view: ViewType;
-
-  constructor(model: MainItemsModelType, view: ViewType) {
+  constructor(model: MainItemsModelType, view: MainItemsViewType) {
     this.model = model;
     this.view = view;
 
-    model.setData(this.getDataFromLocalStorage());
-    view.render(this.model.getData());
+    view.subscribe(SELECTED, this.selectedMainItem.bind(this));
+
+    globalEventEmitter.subscribe(UN_SELECTED_MAIN_ITEM, this.unSelectedMainItem.bind(this));
+    model.setData(this.getItemsFromLocalStorage(), this.getSelectedItemsFromLocalStorage());
+    view.render(this.model.items);
   }
 
-  getDataFromLocalStorage() {
+  getItemsFromLocalStorage(): Array<MainItem> {
     return load('mainItems')
-      ? load('mainItems')
+      ? load('mainItems').map(
+          (item: { id: string; name: string; img: string; selected: boolean }) =>
+            new Item(item.name, item.img, item.id)
+        )
       : mainItemsDefault.map(item => {
-          return Object.assign(new Item(item.name, item.img), item);
+          return new Item(item.name, item.img);
         });
+  }
+
+  getSelectedItemsFromLocalStorage() {
+    return load('selectedMainItems') ? load('selectedMainItems') : [];
+  }
+
+  selectedMainItem(data: { id: string }) {
+    this.model.selectedItem(data.id);
+  }
+
+  unSelectedMainItem(data: { id: string }) {
+    this.model.unSelectedItem(data.id);
   }
 }

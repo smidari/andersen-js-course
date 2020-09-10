@@ -8,6 +8,9 @@ import { ImproveItemsController } from './improveItems/ImproveItemsController';
 import { SecretShopController } from './secretShop/SecretShopController';
 import { SecretShopView } from './secretShop/SecretShopView';
 import { SecretShopModel } from './secretShop/SecretShopModel';
+import { EventEmitter } from './utils/eventEmiter/EventEmiter';
+
+export const globalEventEmitter = new EventEmitter();
 
 const mainItemsModel = new MainItemsModel();
 const mainItemsView = new MainItemsView();

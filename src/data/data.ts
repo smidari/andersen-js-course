@@ -3,13 +3,16 @@ export type MainItem = {
   name: string;
   img: string;
   selected: boolean;
+  changedSelected: () => void;
 };
+
 export type ImprovesItem = {
   id: string;
   name: string;
   include: Array<string>;
   img: string;
   selected: boolean;
+  changedSelected: () => void;
 };
 export type MainItemDefault = {
   name: string;
@@ -32,7 +35,7 @@ export const mainItemsDefault: Array<MainItemDefault> = [
     img: 'http://dota2-i.ru/img/items/011/energy_booster.jpg',
   },
   {
-    name: 'Iron Branch ',
+    name: 'Iron Branch',
     img: 'http://dota2-i.ru/img/items/003/chainmail.jpg',
   },
   {
@@ -107,7 +110,7 @@ export const mainItemsDefault: Array<MainItemDefault> = [
 export const improvesItemsDefault: Array<ImproveItemDefault> = [
   {
     name: 'Arcane Boots',
-    include: ['Boots of Speed ', 'Energy Booster'],
+    include: ['Boots of Speed', 'Energy Booster'],
     img: 'http://dota2-i.ru/img/items/006/arcane_boots.jpg',
   },
   {
@@ -122,12 +125,12 @@ export const improvesItemsDefault: Array<ImproveItemDefault> = [
   },
   {
     name: 'HOOD OF DEFIANCE',
-    include: ['Ring of Regen', 'Ring of Health ', 'Cloak'],
+    include: ['Ring of Regen', 'Ring of Health', 'Cloak'],
     img: 'http://dota2-i.ru/img/items/009/hood_of_defiance.jpg',
   },
   {
     name: 'Soul booster',
-    include: ['Ring of Regen', 'Vitality Booster', 'Energy Booster'],
+    include: ['Ring of Regen', 'Energy Booster'],
     img: 'http://dota2-i.ru/img/items/009/hood_of_defiance.jpg',
   },
   {

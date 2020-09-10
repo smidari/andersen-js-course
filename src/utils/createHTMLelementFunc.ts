@@ -5,7 +5,10 @@ type propsType = {
   src?: string;
   'data-id'?: string;
   'data-includes'?: Array<string>;
-  sss?: string;
+  value?: string;
+  placeholder?: string;
+  'data-tooltip'?: string;
+  draggable?: boolean;
 };
 type childrenType = Array<HTMLElement | string>;
 

@@ -1,6 +1,6 @@
 import { ImprovesItem, MainItem } from '../data/data';
 
-export function save(key: string, data: Array<MainItem> | Array<ImprovesItem>) {
+export function save(key: string, data: any) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 

@@ -1,5 +1,5 @@
 export class EventEmitter {
-  private events: {
+  events: {
     [key: string]: Array<Function>;
   };
 

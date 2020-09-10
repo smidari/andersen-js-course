@@ -6,28 +6,29 @@ body {
 
 .wrapper {
   padding: 50px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .main_items {
   width: 20%;
   height: 600px;
-  float: left;
-  box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   text-align: center;
+  box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
 }
 
 h3 {
   color: white;
 }
 
-.main_items_lists,
-.improves_items_lists {
-  padding: 10px;
-}
-
-.main_items_lists div,
-.improves_items_lists div {
-  float: left;
+.main_items_lists, .improves_items_lists{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5px;
 }
 
 .main_items_lists img,
@@ -45,40 +46,137 @@ h3 {
 .improves_items {
   width: 20%;
   height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
-  float: right;
   text-align: center;
   margin-right: 0;
 }
 
+.open_modal_btn{
+  align-self: flex-end;
+}
 .secret_shop {
-  float: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 40%;
   height: 600px;
-  margin-left: 10%;
+  box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
 }
+
 .secret_shop img {
   width: 60px;
   height: 50px;
 }
 .shop_main_items_list div,
 .shop_improve_item {
+  margin: 10px;
   width: 60px;
   height: 50px;
   box-shadow: 0 2px 9px 0 rgba(255, 255, 255, 1);
   border: 1px solid white;
 }
 
-.shop_main_items_list {
-  width: 10%;
-  float: left;
-  margin-top: 20%;
+
+.check {
+  box-shadow: inset 0px 1px 0px 0px #e184f3;
+  background: linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+  background-color: #c123de;
+  border-radius: 6px;
+  border: 1px solid #a511c0;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 11px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #9b14b3;
+}
+.check:hover {
+  background: linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+  background-color: #a20dbd;
+}
+/*.check:active {*/
+/*  position:relative;*/
+/*  top:1px;*/
+/*}*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.shop_main_items_list div {
-  margin-top: 25%;
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #adadad;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888888;
+  width: 30%;
 }
-.shop_improve_item {
-  float: right;
-  margin-top: 35%;
+
+.modal_content h2{
+  align-self: center;
+  color: #9b14b3;
+}
+
+.modal_content input{
+  width: 70%;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #9b14b3;
+  border-radius: 4px;
+}
+ .add_new_item{
+   align-self: flex-end;
+ }
+/* The Close Button */
+.close {
+  align-self: flex-end;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #ff1715;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  z-index: 1;
+  font-size: 10px;
+  content: attr(data-tooltip); /* Выводим текст */
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0; /* Положение подсказки */
+  background-color: rgba(155, 20, 179, 0.6);
+  color: #fff;
+  padding: 0.5em;
+  pointer-events: none;
+  opacity: 0; /* Подсказка невидима */
+  transition: .8s;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  top: 2em;
 }

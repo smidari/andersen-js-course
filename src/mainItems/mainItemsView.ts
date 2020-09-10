@@ -1,6 +1,13 @@
 import { MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
+import { SELECTED } from '../utils/eventEmiter/events';
+
+export type MainItemsViewType = {
+  render: (data: Array<MainItem>) => HTMLElement | null;
+  subscribe: (event: string, selectedItem: any) => void;
+};
+
 
 export class MainItemsView extends EventEmitter {
   divWrapper: HTMLDivElement;
@@ -12,12 +19,12 @@ export class MainItemsView extends EventEmitter {
 
   handelSelected({ target }: any) {
     const id = target.parentNode.getAttribute('data-id');
-    // globalEventEmitter.emit(SELECTED, { id });
+    this.emit(SELECTED, { id });
   }
 
-  createItem(data: MainItem) {
-    const img = createElement('img', { alt: `${data.name}`, src: data.img });
-    const div = createElement('div', { 'data-id': data.id }, img);
+  createItem(item: MainItem) {
+    const img = createElement('img', { alt: `${item.name}`, src: item.img });
+    const div = createElement('div', { 'data-id': item.id, 'data-tooltip': item.name, draggable: true}, img);
     div.addEventListener('click', this.handelSelected.bind(this));
     return div;
   }
