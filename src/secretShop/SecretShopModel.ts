@@ -42,8 +42,6 @@ export class SecretShopModel extends EventEmitter {
   }
 
   checkItems() {
-    console.log(this.improveItemSelected);
-    console.log(this.mainItemsSelected);
     if (this.improveItemSelected && this.mainItemsSelected.length > 1) {
       if (
         this.mainItemsSelected.every(item => this.improveItemSelected.include.includes(item.id))
@@ -51,6 +49,8 @@ export class SecretShopModel extends EventEmitter {
         this.myItems = [...this.myItems, this.improveItemSelected];
         save(MY_ITEMS, this.myItems);
         this.emit(SUCCSESS_CRAFT_ITEM, this.improveItemSelected);
+        this.mainItemsSelected = [];
+        this.improveItemSelected = null;
       } else {
         alert('Error');
       }

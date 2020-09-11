@@ -3,6 +3,8 @@ import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
 import { globalEventEmitter } from '../index';
 import { ImprovesItem } from '../data/data';
 import { ItemImprove } from './improveItem';
+import { IMPROVES_ITEMS } from '../utils/localStorage/const';
+import { DROP_START_IMPROVE_ITEM, DROP_START_IMPROVE_ITEM_FOR_CRAFT_TABLE } from '../utils/eventEmiter/events';
 
 export class ImproveItemsModel extends EventEmitter {
   private _items: ImprovesItem[];
@@ -18,18 +20,17 @@ export class ImproveItemsModel extends EventEmitter {
 
   set items(value: ImprovesItem[]) {
     this._items = value;
-    save('improvesItems', this.items);
+    save(IMPROVES_ITEMS, this.items);
   }
 
   addNewItem(data: any) {
     const newItem = new ItemImprove(data.name, data.mainItems);
     this._items = [...this._items, newItem];
-    save('improvesItems', this.items);
+    save(IMPROVES_ITEMS, this.items);
   }
 
-  dropImproveItem(id: string) {
-    const dropImproveItem = this._items.find(item => item.id === id);
-    save('dropImproveItem', dropImproveItem);
-    globalEventEmitter.emit('dropGlobalImproveItem', dropImproveItem);
+  getDropStartItemById(id: string) {
+    const dropItem = this._items.find(item => item.id === id);
+    globalEventEmitter.emit(DROP_START_IMPROVE_ITEM_FOR_CRAFT_TABLE, dropItem);
   }
 }

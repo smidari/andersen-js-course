@@ -1,7 +1,7 @@
 import { MainItem, mainItemsDefault } from '../data/data';
 import { load } from '../utils/localStorageFunctions';
 import { MainItemsModel } from './mainItemsModel';
-import { DROP_MAIN_ITEM } from '../utils/eventEmiter/events';
+import { DROP_START } from '../utils/eventEmiter/events';
 import { MainItemsView } from './mainItemsView';
 import { MAIN_ITEMS } from '../utils/localStorage/const';
 import { ItemMain } from './mainitem';
@@ -14,13 +14,13 @@ export class MainItemsController {
     this.model = model;
     this.view = view;
 
-    view.subscribe(DROP_MAIN_ITEM, this.dropMainItem);
+    view.subscribe(DROP_START, this.dropStartMainItem);
 
     model.items = this.getItemsFromLocalStorage();
     view.render(this.model.items);
   }
 
-  dropMainItem = (data: { id: string }) => this.model.dropItem(data.id);
+  dropStartMainItem = (data: { id: string }) => this.model.getDropStartItemById(data.id);
 
   getItemsFromLocalStorage(): Array<MainItem> {
     return load(MAIN_ITEMS)

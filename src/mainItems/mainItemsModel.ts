@@ -3,6 +3,7 @@ import { save } from '../utils/localStorageFunctions';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
 import { globalEventEmitter } from '../index';
 import { MAIN_ITEMS } from '../utils/localStorage/const';
+import { DROP_START_MAIN_ITEM_FOR_CRAFT_TABLE } from '../utils/eventEmiter/events';
 
 export class MainItemsModel extends EventEmitter {
   private _items: Array<MainItem>;
@@ -21,10 +22,9 @@ export class MainItemsModel extends EventEmitter {
     save(MAIN_ITEMS, this._items)
   }
 
-  dropItem(id: string) {
+  getDropStartItemById(id: string) {
     const dropItem = this._items.find(item => item.id === id);
-    save('dropItem', dropItem);
-    globalEventEmitter.emit('dropItem', dropItem);
+    globalEventEmitter.emit(DROP_START_MAIN_ITEM_FOR_CRAFT_TABLE, dropItem);
   }
 }
 

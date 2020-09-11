@@ -1,7 +1,7 @@
 import { MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
-import { DROP_MAIN_ITEM, SELECTED } from '../utils/eventEmiter/events';
+import { DROP_START, SELECTED } from '../utils/eventEmiter/events';
 
 export type MainItemsViewType = {
   render: (data: Array<MainItem>) => HTMLElement | null;
@@ -18,7 +18,7 @@ export class MainItemsView extends EventEmitter {
 
   handelDraggStart({ target }: any) {
     const id = target.parentNode.getAttribute('data-id');
-    this.emit(DROP_MAIN_ITEM, { id });
+    this.emit(DROP_START, { id });
   }
 
   createItem(item: MainItem) {

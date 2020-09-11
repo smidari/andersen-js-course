@@ -1,14 +1,19 @@
 import { SecretShopView } from './SecretShopView';
 import {
   CHECK,
-  DROP_IMPOVE_ITEM_SUCCSESS,
-  DROP_SUCCSESS,
+  DROP_IMPOVE_ITEM_SUCCESS,
+  DROP_START_MAIN_ITEM_FOR_CRAFT_TABLE,
+  DROP_MAIN_ITEM_SUCCESS,
   SUCCSESS_CRAFT_ITEM,
+  REMOVE_DROP_MAIN_ELEMENT,
+  REMOVE_DROP_IMPROVE_ELEMENT,
+  DROP_START_IMPROVE_ITEM_FOR_CRAFT_TABLE,
 } from '../utils/eventEmiter/events';
 import { load } from '../utils/localStorageFunctions';
 import { globalEventEmitter } from '../index';
 import { SecretShopModel } from './SecretShopModel';
 import { ImprovesItem, MainItem } from '../data/data';
+import { MY_ITEMS } from '../utils/localStorage/const';
 
 export class SecretShopController {
   model: SecretShopModel;
@@ -19,13 +24,15 @@ export class SecretShopController {
     this.view = view;
 
     view.subscribe(CHECK, this.check);
-
-    view.subscribe('removeMainElement', this.removeMainElement);
-    view.subscribe('removeImproveElement', this.removeImproveElement);
-    view.subscribe(DROP_SUCCSESS, this.dropSuccess);
-    view.subscribe(DROP_IMPOVE_ITEM_SUCCSESS, this.dropImproveItemSuccess);
-    globalEventEmitter.subscribe('dropItem', this.dropItemForTable);
-    globalEventEmitter.subscribe('dropGlobalImproveItem', this.dropImproveItemForTable);
+    view.subscribe(DROP_MAIN_ITEM_SUCCESS, this.dropSuccess);
+    view.subscribe(DROP_IMPOVE_ITEM_SUCCESS, this.dropImproveItemSuccess);
+    view.subscribe(REMOVE_DROP_MAIN_ELEMENT, this.removeMainElement);
+    view.subscribe(REMOVE_DROP_IMPROVE_ELEMENT, this.removeImproveElement);
+    globalEventEmitter.subscribe(DROP_START_MAIN_ITEM_FOR_CRAFT_TABLE, this.dropItemForTable);
+    globalEventEmitter.subscribe(
+      DROP_START_IMPROVE_ITEM_FOR_CRAFT_TABLE,
+      this.dropImproveItemForTable
+    );
     model.subscribe(SUCCSESS_CRAFT_ITEM, this.successCraftItem);
 
     model.setMyItems(this.getMyItemsFromLS());
@@ -36,7 +43,7 @@ export class SecretShopController {
     });
   }
 
-  getMyItemsFromLS = () => (load('myItems') ? load('myItems') : []);
+  getMyItemsFromLS = () => (load(MY_ITEMS) ? load(MY_ITEMS) : []);
 
   check = () => this.model.checkItems();
 
@@ -48,7 +55,7 @@ export class SecretShopController {
     });
   };
 
-  dropItemForTable = (dropItem: any) => this.view.setDropItem(dropItem);
+  dropItemForTable = (dropItem: MainItem) => this.view.setDropItem(dropItem);
 
   dropImproveItemForTable = (dropImproveItem: ImprovesItem) =>
     this.view.setDropImproveItem(dropImproveItem);

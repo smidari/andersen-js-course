@@ -1,7 +1,7 @@
 import { ImprovesItem, MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
-import { ADD_NEW_ITEM, DROP_IMPOVES_ITEM } from '../utils/eventEmiter/events';
+import { ADD_NEW_ITEM, DROP_START_IMPROVE_ITEM } from '../utils/eventEmiter/events';
 
 export class ImproveItemsView extends EventEmitter {
   divWrapper: HTMLDivElement;
@@ -34,7 +34,7 @@ export class ImproveItemsView extends EventEmitter {
 
   handelDraggStart({ target }: any) {
     const id = target.parentNode.getAttribute('data-id');
-    this.emit(DROP_IMPOVES_ITEM, { id });
+    this.emit(DROP_START_IMPROVE_ITEM, { id });
   }
 
   createItem(data: ImprovesItem) {

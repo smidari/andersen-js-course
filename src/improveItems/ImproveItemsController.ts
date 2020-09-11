@@ -1,7 +1,7 @@
 import { ImproveItemDefault, ImprovesItem, improvesItemsDefault, MainItem } from '../data/data';
 import { load } from '../utils/localStorageFunctions';
 import { ImproveItemsModel } from './ImproveItemsModel';
-import { ADD_NEW_ITEM, DROP_IMPOVES_ITEM } from '../utils/eventEmiter/events';
+import { ADD_NEW_ITEM, DROP_START_IMPROVE_ITEM } from '../utils/eventEmiter/events';
 import { ImproveItemsView } from './ImproveItemsView';
 import { IMPROVES_ITEMS, MAIN_ITEMS, MY_ITEMS } from '../utils/localStorage/const';
 import { ItemImprove } from './improveItem';
@@ -14,7 +14,7 @@ export class ImproveItemsController {
     this.model = model;
     this.view = view;
 
-    view.subscribe(DROP_IMPOVES_ITEM, this.dropImproveItem);
+    view.subscribe(DROP_START_IMPROVE_ITEM, this.dropImproveItem);
     view.subscribe(ADD_NEW_ITEM, this.addNewItem);
     model.items = this.getItemsFromLocalStorage();
     view.render(this.model.items, this.getMainItemsFromLocalStorage());
@@ -56,5 +56,5 @@ export class ImproveItemsController {
     this.view.render(this.model.items, this.getMainItemsFromLocalStorage());
   };
 
-  dropImproveItem = (data: { id: string }) => this.model.dropImproveItem(data.id);
+  dropImproveItem = (data: { id: string }) => this.model.getDropStartItemById(data.id);
 }

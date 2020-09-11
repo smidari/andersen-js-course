@@ -1,7 +1,11 @@
 import { ImprovesItem, MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
-import { CHECK, DROP_IMPOVE_ITEM_SUCCSESS, DROP_SUCCSESS } from '../utils/eventEmiter/events';
+import {
+  CHECK,
+  DROP_IMPOVE_ITEM_SUCCESS,
+  DROP_MAIN_ITEM_SUCCESS,
+} from '../utils/eventEmiter/events';
 
 export type SelectedItems = {
   mainItemsSelected: Array<MainItem> | [];
@@ -11,18 +15,18 @@ export type SelectedItems = {
 
 export class SecretShopView extends EventEmitter {
   divMainItem: HTMLDivElement;
-  dropItem: any;
+  dropMainItem: any;
   dropImproveItem: any;
 
   constructor() {
     super();
     this.divMainItem = document.querySelector('.main_items') as HTMLDivElement;
-    this.dropItem = null;
+    this.dropMainItem = null;
     this.dropImproveItem = null;
   }
 
-  setDropItem(dropItem: any) {
-    this.dropItem = dropItem;
+  setDropItem(dropItem: MainItem) {
+    this.dropMainItem = dropItem;
   }
 
   setDropImproveItem(dropImproveItem: ImprovesItem) {
@@ -33,7 +37,6 @@ export class SecretShopView extends EventEmitter {
     const id = target.getAttribute('data-id');
     target.remove();
     this.emit('removeMainElement', { id });
-
   }
 
   handelUnSelectedImproveElement({ target }: any) {
@@ -60,13 +63,13 @@ export class SecretShopView extends EventEmitter {
 
   handelDragDropMainItem(event: any) {
     const img = createElement('img', {
-      id: this.dropItem.name,
-      alt: this.dropItem.name,
-      src: this.dropItem.img,
-      'data-id': this.dropItem.id,
+      id: this.dropMainItem.name,
+      alt: this.dropMainItem.name,
+      src: this.dropMainItem.img,
+      'data-id': this.dropMainItem.id,
     });
     event.target.appendChild(img);
-    this.emit(DROP_SUCCSESS, this.dropItem);
+    this.emit(DROP_MAIN_ITEM_SUCCESS, this.dropMainItem);
   }
 
   handelDragDropImproveItem(event: any) {
@@ -76,10 +79,10 @@ export class SecretShopView extends EventEmitter {
       'data-id': this.dropImproveItem.id,
     });
     event.target.appendChild(img);
-    this.emit(DROP_IMPOVE_ITEM_SUCCSESS, this.dropImproveItem);
+    this.emit(DROP_IMPOVE_ITEM_SUCCESS, this.dropImproveItem);
   }
 
-  createSelectedMainElements(items: any) {
+  createSelectedMainElements() {
     let selectedMainItems: Array<HTMLElement> = [];
 
     for (let i = selectedMainItems.length; i <= 3; i++) {
@@ -131,16 +134,25 @@ export class SecretShopView extends EventEmitter {
   }
 
   render(data: SelectedItems) {
+    // removing elements before re-rendering
     let myNode = document.querySelector('.secret_shop');
     if (myNode) {
       myNode.remove();
     }
+    // create block for my items who will be crafted
     const myItems = this.createMyItems(data.myItems);
 
-    const mainItemsDiv = this.createSelectedMainElements(data.mainItemsSelected);
+    // create 3 div for selected the main items
+    const mainItemsDiv = this.createSelectedMainElements();
+
+    // create a button to check the selected items
     const checkBtn = createElement('button', { className: 'check' }, 'Check');
     checkBtn.addEventListener('click', this.handleClickCheckBtn.bind(this));
+
+    //create div for selected the improve item
     const ImproveItemDiv = this.createSelectedImproveElement(data.improveItemSelected);
+
+    //compound of all created elements
     const divCraftTable = createElement(
       'div',
       { className: 'craft_table' },
