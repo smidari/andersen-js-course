@@ -1,14 +1,14 @@
 import { SecretShopView } from './SecretShopView';
 import {
   CHECK,
-  IMPROVE_SELECTED_ITEMS_CHANGED,
-  MAIN_SELECTED_ITEMS_CHANGED,
+  DROP_IMPOVE_ITEM_SUCCSESS,
+  DROP_SUCCSESS,
+  SUCCSESS_CRAFT_ITEM,
 } from '../utils/eventEmiter/events';
 import { load } from '../utils/localStorageFunctions';
-import { Item } from '../mainItems/mainItemsModel';
 import { globalEventEmitter } from '../index';
 import { SecretShopModel } from './SecretShopModel';
-import { ItemImprove } from '../improveItems/ImproveItemsModel';
+import { ImprovesItem, MainItem } from '../data/data';
 
 export class SecretShopController {
   model: SecretShopModel;
@@ -18,55 +18,46 @@ export class SecretShopController {
     this.model = model;
     this.view = view;
 
-    view.subscribe(CHECK, this.check.bind(this));
-    globalEventEmitter.subscribe(
-      MAIN_SELECTED_ITEMS_CHANGED,
-      this.changeSelectedMainItems.bind(this)
-    );
-    globalEventEmitter.subscribe(
-      IMPROVE_SELECTED_ITEMS_CHANGED,
-      this.changeSelectedImproveItems.bind(this)
-    );
+    view.subscribe(CHECK, this.check);
 
-    model.setData(this.getSelectedMainItemsFromLocalStorage());
-    model.setImproveItem(this.getSelectedImproveItemsFromLS());
+    view.subscribe('removeMainElement', this.removeMainElement);
+    view.subscribe('removeImproveElement', this.removeImproveElement);
+    view.subscribe(DROP_SUCCSESS, this.dropSuccess);
+    view.subscribe(DROP_IMPOVE_ITEM_SUCCSESS, this.dropImproveItemSuccess);
+    globalEventEmitter.subscribe('dropItem', this.dropItemForTable);
+    globalEventEmitter.subscribe('dropGlobalImproveItem', this.dropImproveItemForTable);
+    model.subscribe(SUCCSESS_CRAFT_ITEM, this.successCraftItem);
+
+    model.setMyItems(this.getMyItemsFromLS());
     view.render({
       improveItemSelected: this.model.improveItemSelected,
       mainItemsSelected: this.model.mainItemsSelected,
+      myItems: this.model.getMyItems(),
     });
   }
 
-  getSelectedMainItemsFromLocalStorage() {
-    return load('selectedMainItems')
-      ? load('selectedMainItems').map(
-          (item: { id: string; name: string; img: string; selected: boolean }) =>
-            new Item(item.name, item.img, item.id)
-        )
-      : [];
-  }
+  getMyItemsFromLS = () => (load('myItems') ? load('myItems') : []);
 
-  getSelectedImproveItemsFromLS() {
-    const newItem = load('selectedImproveItem');
-    return newItem ? new ItemImprove(newItem.name, newItem.include, newItem.img, newItem.id) : null;
-  }
+  check = () => this.model.checkItems();
 
-  changeSelectedMainItems() {
-    this.model.setData(this.getSelectedMainItemsFromLocalStorage());
+  successCraftItem = () => {
     this.view.render({
-      mainItemsSelected: this.model.getData(),
-      improveItemSelected: this.model.getSelectImproveItem(),
+      improveItemSelected: this.model.improveItemSelected,
+      mainItemsSelected: this.model.mainItemsSelected,
+      myItems: this.model.myItems,
     });
-  }
+  };
 
-  changeSelectedImproveItems() {
-    this.model.setImproveItem(this.getSelectedImproveItemsFromLS());
-    this.view.render({
-      mainItemsSelected: this.model.getData(),
-      improveItemSelected: this.model.getSelectImproveItem(),
-    });
-  }
+  dropItemForTable = (dropItem: any) => this.view.setDropItem(dropItem);
 
-  check() {
-    this.model.checkItems();
-  }
+  dropImproveItemForTable = (dropImproveItem: ImprovesItem) =>
+    this.view.setDropImproveItem(dropImproveItem);
+
+  dropSuccess = (dropItem: MainItem) => this.model.dropSuccess(dropItem);
+
+  dropImproveItemSuccess = (dropItem: ImprovesItem) => this.model.dropImproveItemSuccess(dropItem);
+
+  removeMainElement = (data: { id: string }) => this.model.removeMainItem(data.id);
+
+  removeImproveElement = () => this.model.removeImproveItem();
 }

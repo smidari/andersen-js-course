@@ -1,7 +1,7 @@
 import { ImprovesItem, MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
-import { ADD_NEW_ITEM, SELECTED_IMPROVE_ITEM } from '../utils/eventEmiter/events';
+import { ADD_NEW_ITEM, DROP_IMPOVES_ITEM } from '../utils/eventEmiter/events';
 
 export class ImproveItemsView extends EventEmitter {
   divWrapper: HTMLDivElement;
@@ -9,11 +9,6 @@ export class ImproveItemsView extends EventEmitter {
   constructor() {
     super();
     this.divWrapper = document.querySelector('.wrapper') as HTMLDivElement;
-  }
-
-  handelSelected({ target }: any) {
-    const id = target.parentNode.getAttribute('data-id');
-    this.emit(SELECTED_IMPROVE_ITEM, { id });
   }
 
   handelClickOpenModal() {
@@ -36,19 +31,26 @@ export class ImproveItemsView extends EventEmitter {
       mainItems: [select1.value, select2.value, select3.value],
     });
   }
-  handelHoverItem() {
-    console.log('sdaaa');
+
+  handelDraggStart({ target }: any) {
+    const id = target.parentNode.getAttribute('data-id');
+    this.emit(DROP_IMPOVES_ITEM, { id });
   }
 
   createItem(data: ImprovesItem) {
     const img = createElement('img', { alt: `${data.name}`, src: data.img });
     const div = createElement(
       'div',
-      { 'data-id': data.id, 'data-includes': data.include, 'data-tooltip': data.name },
+      {
+        className: 'item_improve_card',
+        'data-id': data.id,
+        'data-includes': data.include,
+        'data-tooltip': data.name,
+        draggable: true,
+      },
       img
     );
-    div.addEventListener('click', this.handelSelected.bind(this));
-    div.addEventListener('onmouseover', this.handelHoverItem.bind(this));
+    div.addEventListener('dragstart', this.handelDraggStart.bind(this));
     return div;
   }
 

@@ -1,6 +1,6 @@
 type propsType = {
   className?: string;
-  class?: string;
+  id?: string;
   alt?: string;
   src?: string;
   'data-id'?: string;

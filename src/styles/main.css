@@ -24,7 +24,8 @@ h3 {
   color: white;
 }
 
-.main_items_lists, .improves_items_lists{
+.main_items_lists,
+.improves_items_lists {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -54,16 +55,39 @@ h3 {
   margin-right: 0;
 }
 
-.open_modal_btn{
+.open_modal_btn {
   align-self: flex-end;
 }
 .secret_shop {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   width: 40%;
   height: 600px;
   box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
+}
+
+.craft_table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.my_items{
+  width: 100%;
+  text-align: center;
+}
+
+.list_my_items {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid white;
 }
 
 .secret_shop img {
@@ -78,7 +102,6 @@ h3 {
   box-shadow: 0 2px 9px 0 rgba(255, 255, 255, 1);
   border: 1px solid white;
 }
-
 
 .check {
   box-shadow: inset 0px 1px 0px 0px #e184f3;
@@ -99,10 +122,6 @@ h3 {
   background: linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
   background-color: #a20dbd;
 }
-/*.check:active {*/
-/*  position:relative;*/
-/*  top:1px;*/
-/*}*/
 
 .modal {
   display: none;
@@ -127,12 +146,12 @@ h3 {
   width: 30%;
 }
 
-.modal_content h2{
+.modal_content h2 {
   align-self: center;
   color: #9b14b3;
 }
 
-.modal_content input{
+.modal_content input {
   width: 70%;
   padding: 8px 10px;
   margin: 8px 0;
@@ -140,9 +159,9 @@ h3 {
   border: 2px solid #9b14b3;
   border-radius: 4px;
 }
- .add_new_item{
-   align-self: flex-end;
- }
+.add_new_item {
+  align-self: flex-end;
+}
 /* The Close Button */
 .close {
   align-self: flex-end;
@@ -155,7 +174,6 @@ h3 {
 .close:focus {
   color: #ff1715;
   text-decoration: none;
-  cursor: pointer;
 }
 
 [data-tooltip] {
@@ -174,9 +192,17 @@ h3 {
   padding: 0.5em;
   pointer-events: none;
   opacity: 0; /* Подсказка невидима */
-  transition: .8s;
+  transition: 0.8s;
 }
 [data-tooltip]:hover::after {
   opacity: 1;
   top: 2em;
+}
+
+.hide {
+  display: none;
+}
+
+.hovered {
+  box-shadow: -1px -1px 17px 13px rgba(255, 193, 244, 0.49);
 }

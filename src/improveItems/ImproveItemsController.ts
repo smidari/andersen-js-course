@@ -1,28 +1,10 @@
-import { ImproveItemDefault, improvesItemsDefault, MainItem } from '../data/data';
+import { ImproveItemDefault, ImprovesItem, improvesItemsDefault, MainItem } from '../data/data';
 import { load } from '../utils/localStorageFunctions';
-import { ImproveItemsModel, ItemImprove } from './ImproveItemsModel';
-import {
-  ADD_NEW_ITEM,
-  IMPROVE_SELECTED_ITEMS_CHANGED,
-  SELECTED_IMPROVE_ITEM,
-  UN_SELECTED_IMPROVE_ITEM,
-} from '../utils/eventEmiter/events';
-import { globalEventEmitter } from '../index';
+import { ImproveItemsModel } from './ImproveItemsModel';
+import { ADD_NEW_ITEM, DROP_IMPOVES_ITEM } from '../utils/eventEmiter/events';
 import { ImproveItemsView } from './ImproveItemsView';
-import { SecretShopModel } from '../secretShop/SecretShopModel';
-
-// type improvesItemsModelType = {
-//   items: Array<ImprovesItem>;
-//   setData: (data: Array<ImprovesItem>, selectItem: ImprovesItem | null) => void;
-//   getData: () => Array<ImprovesItem>;
-//   selectedItem: (id: string) => void;
-//   subscribe: (event: string, func: any) => void;
-//   unSelectedItem: (id: string) => void;
-// };
-// type ViewType = {
-//   render: (data: Array<ImprovesItem>) => HTMLElement;
-//   subscribe: (event: string, func: any) => void;
-// };
+import { IMPROVES_ITEMS, MAIN_ITEMS, MY_ITEMS } from '../utils/localStorage/const';
+import { ItemImprove } from './improveItem';
 
 export class ImproveItemsController {
   model: ImproveItemsModel;
@@ -32,16 +14,17 @@ export class ImproveItemsController {
     this.model = model;
     this.view = view;
 
-    view.subscribe(SELECTED_IMPROVE_ITEM, this.selectedImproveItem.bind(this));
-    view.subscribe(ADD_NEW_ITEM, this.addNewItem.bind(this));
-    globalEventEmitter.subscribe(UN_SELECTED_IMPROVE_ITEM, this.unSelectedImproveItem.bind(this));
-    model.setData(this.getItemsFromLocalStorage(), this.getSelectedItemFromLocalStorage());
-    view.render(this.model.getData(), this.getMainItemsFromLocalStorage());
+    view.subscribe(DROP_IMPOVES_ITEM, this.dropImproveItem);
+    view.subscribe(ADD_NEW_ITEM, this.addNewItem);
+    model.items = this.getItemsFromLocalStorage();
+    view.render(this.model.items, this.getMainItemsFromLocalStorage());
   }
 
   getItemsFromLocalStorage() {
+    // change the name to the id in the include property
     let selectedImproveItems: Array<ImproveItemDefault> = improvesItemsDefault;
-    const mainItems: Array<MainItem> = load('mainItems');
+    const mainItems: Array<MainItem> = load(MAIN_ITEMS);
+    console.log(mainItems);
     selectedImproveItems = selectedImproveItems.map(item => {
       item.include = item.include.map(nameItem => {
         if (mainItems) {
@@ -56,8 +39,8 @@ export class ImproveItemsController {
       return item;
     });
 
-    return load('improvesItems')
-      ? load('improvesItems').map(
+    return load(IMPROVES_ITEMS)
+      ? load(IMPROVES_ITEMS).map(
           (item: { name: string; img: string; include: string[]; id: string | undefined }) =>
             new ItemImprove(item.name, item.include, item.img, item.id)
         )
@@ -66,25 +49,12 @@ export class ImproveItemsController {
         });
   }
 
-  getSelectedItemFromLocalStorage() {
-    const newItem = load('selectedImproveItem');
-    return newItem ? new ItemImprove(newItem.name, newItem.include, newItem.img, newItem.id) : null;
-  }
+  getMainItemsFromLocalStorage = () => (load(MY_ITEMS) ? load(MY_ITEMS) : []);
 
-  getMainItemsFromLocalStorage() {
-    return load('mainItems') ? load('mainItems') : [];
-  }
-
-  selectedImproveItem(data: { id: string }) {
-    this.model.selectedItem(data.id);
-  }
-
-  unSelectedImproveItem(data: { id: string }) {
-    this.model.unSelectedItem(data.id);
-  }
-
-  addNewItem(data: any) {
+  addNewItem = (data: ImprovesItem) => {
     this.model.addNewItem(data);
-    this.view.render(this.model.getData(), this.getMainItemsFromLocalStorage());
-  }
+    this.view.render(this.model.items, this.getMainItemsFromLocalStorage());
+  };
+
+  dropImproveItem = (data: { id: string }) => this.model.dropImproveItem(data.id);
 }

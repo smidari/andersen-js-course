@@ -1,13 +1,12 @@
 import { MainItem } from '../data/data';
 import { createElement } from '../utils/createHTMLelementFunc';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
-import { SELECTED } from '../utils/eventEmiter/events';
+import { DROP_MAIN_ITEM, SELECTED } from '../utils/eventEmiter/events';
 
 export type MainItemsViewType = {
   render: (data: Array<MainItem>) => HTMLElement | null;
   subscribe: (event: string, selectedItem: any) => void;
 };
-
 
 export class MainItemsView extends EventEmitter {
   divWrapper: HTMLDivElement;
@@ -17,15 +16,19 @@ export class MainItemsView extends EventEmitter {
     this.divWrapper = document.querySelector('.wrapper') as HTMLDivElement;
   }
 
-  handelSelected({ target }: any) {
+  handelDraggStart({ target }: any) {
     const id = target.parentNode.getAttribute('data-id');
-    this.emit(SELECTED, { id });
+    this.emit(DROP_MAIN_ITEM, { id });
   }
 
   createItem(item: MainItem) {
     const img = createElement('img', { alt: `${item.name}`, src: item.img });
-    const div = createElement('div', { 'data-id': item.id, 'data-tooltip': item.name, draggable: true}, img);
-    div.addEventListener('click', this.handelSelected.bind(this));
+    const div = createElement(
+      'div',
+      { className: 'item_card', 'data-id': item.id, 'data-tooltip': item.name, draggable: true },
+      img
+    );
+    div.addEventListener('dragstart', this.handelDraggStart.bind(this));
     return div;
   }
 

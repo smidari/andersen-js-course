@@ -2,8 +2,6 @@ export type MainItem = {
   id: string;
   name: string;
   img: string;
-  selected: boolean;
-  changedSelected: () => void;
 };
 
 export type ImprovesItem = {
@@ -11,8 +9,6 @@ export type ImprovesItem = {
   name: string;
   include: Array<string>;
   img: string;
-  selected: boolean;
-  changedSelected: () => void;
 };
 export type MainItemDefault = {
   name: string;

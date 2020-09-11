@@ -1,45 +1,35 @@
 import { MainItem, mainItemsDefault } from '../data/data';
 import { load } from '../utils/localStorageFunctions';
-import { Item, MainItemsModelType } from './mainItemsModel';
-import { SELECTED, UN_SELECTED_MAIN_ITEM } from '../utils/eventEmiter/events';
-import { globalEventEmitter } from '../index';
-import { MainItemsViewType } from './mainItemsView';
+import { MainItemsModel } from './mainItemsModel';
+import { DROP_MAIN_ITEM } from '../utils/eventEmiter/events';
+import { MainItemsView } from './mainItemsView';
+import { MAIN_ITEMS } from '../utils/localStorage/const';
+import { ItemMain } from './mainitem';
 
 export class MainItemsController {
-  model: MainItemsModelType;
-  view: MainItemsViewType;
+  model: MainItemsModel;
+  view: MainItemsView;
 
-  constructor(model: MainItemsModelType, view: MainItemsViewType) {
+  constructor(model: MainItemsModel, view: MainItemsView) {
     this.model = model;
     this.view = view;
 
-    view.subscribe(SELECTED, this.selectedMainItem.bind(this));
+    view.subscribe(DROP_MAIN_ITEM, this.dropMainItem);
 
-    globalEventEmitter.subscribe(UN_SELECTED_MAIN_ITEM, this.unSelectedMainItem.bind(this));
-    model.setData(this.getItemsFromLocalStorage(), this.getSelectedItemsFromLocalStorage());
+    model.items = this.getItemsFromLocalStorage();
     view.render(this.model.items);
   }
 
+  dropMainItem = (data: { id: string }) => this.model.dropItem(data.id);
+
   getItemsFromLocalStorage(): Array<MainItem> {
-    return load('mainItems')
-      ? load('mainItems').map(
+    return load(MAIN_ITEMS)
+      ? load(MAIN_ITEMS).map(
           (item: { id: string; name: string; img: string; selected: boolean }) =>
-            new Item(item.name, item.img, item.id)
+            new ItemMain(item.name, item.img, item.id)
         )
       : mainItemsDefault.map(item => {
-          return new Item(item.name, item.img);
+          return new ItemMain(item.name, item.img);
         });
-  }
-
-  getSelectedItemsFromLocalStorage() {
-    return load('selectedMainItems') ? load('selectedMainItems') : [];
-  }
-
-  selectedMainItem(data: { id: string }) {
-    this.model.selectedItem(data.id);
-  }
-
-  unSelectedMainItem(data: { id: string }) {
-    this.model.unSelectedItem(data.id);
   }
 }
