@@ -1,8 +1,8 @@
 export function parseJSON(jsonStr, successCb, failureCb) {
   try {
     successCb(JSON.parse(jsonStr));
-  } catch (e) {
-    failureCb(e);
+  } catch (err) {
+    failureCb(err);
   }
 }
 

@@ -6,6 +6,9 @@ import { getUsers } from './acynchronous-programming/task4';
 import { getAllDataParallel, getDataSequential, urls } from './acynchronous-programming/task5';
 import { test } from './acynchronous-programming/task6';
 import { fooTask7 } from './acynchronous-programming/task7';
+import { task8 } from './acynchronous-programming/task8';
+import { task9 } from './acynchronous-programming/task9';
+import { Musician } from './acynchronous-programming/task10';
 
 // Task 1
 console.log('===1===');
@@ -32,3 +35,14 @@ test(500);
 
 // Task 7
 fooTask7();
+
+// Task8
+task8('ht://jsonplaceholder.typicode.com/users');
+task8('https://jsonplaceholder.typicode.com/users');
+
+// Task 9
+task9();
+
+// Task 10
+const musician = new Musician('https://jsonplaceholder.typicode.com/albums');
+musician.getAlbums().then(albums => console.log(albums));
