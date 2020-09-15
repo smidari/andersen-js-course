@@ -5,6 +5,7 @@ import { delay } from './acynchronous-programming/task3';
 import { getUsers } from './acynchronous-programming/task4';
 import { getAllDataParallel, getDataSequential, urls } from './acynchronous-programming/task5';
 import { test } from './acynchronous-programming/task6';
+import { fooTask7 } from './acynchronous-programming/task7';
 
 // Task 1
 console.log('===1===');
@@ -28,3 +29,6 @@ getDataSequential(urls);
 
 // Task 6
 test(500);
+
+// Task 7
+fooTask7();
