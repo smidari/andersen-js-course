@@ -9,16 +9,12 @@ export const urls = [
 ];
 
 export function getAllDataParallel(arrUrls) {
-  const allData = [];
-  Promise.all(arrUrls.map(url => getData(url).then(data => allData.push(data))));
-  console.log(allData);
+  Promise.all(arrUrls.map(getData)).then(values => console.log('getAllDataParallel', values));
 }
 
 export function getDataSequential(arrUrls) {
-  let chain = Promise.resolve();
-  const arrData = [];
-  arrUrls.forEach(url => {
-    chain = chain.then(() => getData(url)).then(data => arrData.push(data));
-  });
-  console.log(arrData);
+  const result = arrUrls.reduce((acm, url) => {
+    return acm.then(items => getData(url).then(data => [...items, data]));
+  }, Promise.resolve([]));
+  result.then(data => console.log(data));
 }

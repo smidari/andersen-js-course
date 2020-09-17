@@ -9,6 +9,6 @@ export function test(value) {
         throw new Error('Ошибка');
       }
     })
-    .catch(i => console.log(i))
+    .catch(i => console.log(i.message))
     .finally(() => console.log('This is Finally'));
 }
