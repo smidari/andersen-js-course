@@ -4,7 +4,7 @@ import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
 import {
   CHECK,
   DROP_IMPOVE_ITEM_SUCCESS,
-  DROP_MAIN_ITEM_SUCCESS,
+  DROP_MAIN_ITEM_SUCCESS, REMOVE_DROP_IMPROVE_ELEMENT, REMOVE_DROP_MAIN_ELEMENT,
 } from '../utils/eventEmiter/events';
 
 export type SelectedItems = {
@@ -35,14 +35,18 @@ export class SecretShopView extends EventEmitter {
 
   handelUnSelectedMainElement({ target }: any) {
     const id = target.getAttribute('data-id');
-    target.remove();
-    this.emit('removeMainElement', { id });
+    if (id) {
+      target.remove();
+      this.emit(REMOVE_DROP_MAIN_ELEMENT, { id });
+    }
   }
 
   handelUnSelectedImproveElement({ target }: any) {
-    const id = target.parentNode.getAttribute('data-id');
-    target.remove();
-    this.emit('removeImproveElement', { id });
+    const id = target.getAttribute('data-id');
+    if (id) {
+      target.remove();
+      this.emit(REMOVE_DROP_IMPROVE_ELEMENT, { id });
+    }
   }
 
   handleClickCheckBtn() {
@@ -118,8 +122,8 @@ export class SecretShopView extends EventEmitter {
     let arrMyItems: Array<any> = [];
     if (data) {
       data.forEach(item => {
-        const img = createElement('img', { alt: `${item.name}`, src: item.img });
-        const div = createElement('div', { className: 'cell_item', 'data-id': item.id }, img);
+        const img = createElement('img', { 'data-id': item.id , alt: `${item.name}`, src: item.img });
+        const div = createElement('div', { className: 'cell_item' }, img);
         arrMyItems.push(div);
       });
     }

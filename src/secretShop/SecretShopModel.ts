@@ -3,7 +3,7 @@ import { ImprovesItem, MainItem } from '../data/data';
 import { EventEmitter } from '../utils/eventEmiter/EventEmiter';
 import { SUCCSESS_CRAFT_ITEM } from '../utils/eventEmiter/events';
 import { save } from '../utils/localStorageFunctions';
-import { MY_ITEMS } from '../utils/localStorage/const';
+import { DROP_SUCCESS_MAIN_ITEMS, MY_ITEMS } from '../utils/localStorage/const';
 
 export class SecretShopModel extends EventEmitter {
   improveItemSelected: ImprovesItem | null;
@@ -70,8 +70,8 @@ export class SecretShopModel extends EventEmitter {
   }
 
   removeMainItem(id: string) {
-    this.mainItemsSelected = this.mainItemsSelected.filter(i => i.id !== id);
-    save('dropSuccssesMainItems', this.mainItemsSelected);
+    this.mainItemsSelected = this.mainItemsSelected.filter(item => item.id !== id);
+    save(DROP_SUCCESS_MAIN_ITEMS, this.mainItemsSelected);
   }
 
   removeImproveItem() {

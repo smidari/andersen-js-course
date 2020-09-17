@@ -49,7 +49,7 @@ export class ImproveItemsController {
         });
   }
 
-  getMainItemsFromLocalStorage = () => (load(MY_ITEMS) ? load(MY_ITEMS) : []);
+  getMainItemsFromLocalStorage = () => (load(MAIN_ITEMS) ? load(MAIN_ITEMS) : []);
 
   addNewItem = (data: ImprovesItem) => {
     this.model.addNewItem(data);

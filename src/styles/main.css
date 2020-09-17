@@ -10,12 +10,14 @@ body {
   justify-content: space-between;
 }
 
-.main_items {
+.main_items,
+.improves_items {
   width: 20%;
   height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   text-align: center;
   box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
 }
@@ -27,9 +29,8 @@ h3 {
 .main_items_lists,
 .improves_items_lists {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  padding: 5px;
+  width: 90%;
 }
 
 .main_items_lists img,
@@ -42,17 +43,6 @@ h3 {
 .main_items_lists img:hover,
 .improves_items_lists img:hover {
   box-shadow: 0 2px 9px 0 rgba(255, 255, 255, 1);
-}
-
-.improves_items {
-  width: 20%;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
-  text-align: center;
-  margin-right: 0;
 }
 
 .open_modal_btn {
@@ -76,7 +66,7 @@ h3 {
   height: 100%;
 }
 
-.my_items{
+.my_items {
   width: 100%;
   text-align: center;
 }
@@ -103,9 +93,7 @@ h3 {
   border: 1px solid white;
 }
 
-.check {
-  box-shadow: inset 0px 1px 0px 0px #e184f3;
-  background: linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+.check, .open_modal_btn {
   background-color: #c123de;
   border-radius: 6px;
   border: 1px solid #a511c0;
@@ -116,8 +104,8 @@ h3 {
   font-weight: bold;
   padding: 11px 24px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #9b14b3;
 }
+
 .check:hover {
   background: linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
   background-color: #a20dbd;
@@ -159,8 +147,12 @@ h3 {
   border: 2px solid #9b14b3;
   border-radius: 4px;
 }
-.add_new_item {
+.open_modal_btn {
   align-self: flex-end;
+  margin-right: 10px;
+  font-size: 10px;
+  padding: 8px 11px;
+
 }
 /* The Close Button */
 .close {
@@ -197,12 +189,4 @@ h3 {
 [data-tooltip]:hover::after {
   opacity: 1;
   top: 2em;
-}
-
-.hide {
-  display: none;
-}
-
-.hovered {
-  box-shadow: -1px -1px 17px 13px rgba(255, 193, 244, 0.49);
 }

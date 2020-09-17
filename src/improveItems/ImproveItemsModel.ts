@@ -4,7 +4,7 @@ import { globalEventEmitter } from '../index';
 import { ImprovesItem } from '../data/data';
 import { ItemImprove } from './improveItem';
 import { IMPROVES_ITEMS } from '../utils/localStorage/const';
-import { DROP_START_IMPROVE_ITEM, DROP_START_IMPROVE_ITEM_FOR_CRAFT_TABLE } from '../utils/eventEmiter/events';
+import { DROP_START_IMPROVE_ITEM_FOR_CRAFT_TABLE } from '../utils/eventEmiter/events';
 
 export class ImproveItemsModel extends EventEmitter {
   private _items: ImprovesItem[];

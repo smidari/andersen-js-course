@@ -105,9 +105,9 @@ export class ImproveItemsView extends EventEmitter {
       myNode.remove();
     }
     const h3ImprovesItem = createElement('h3', {}, 'Improves items');
-    const div = createElement('div', { className: 'improves_items_lists' });
+    const divItemsLists = createElement('div', { className: 'improves_items_lists' });
     data.forEach(item => {
-      return div.appendChild(this.createItem(item));
+      return divItemsLists.appendChild(this.createItem(item));
     });
 
     const buttonAddItem = this.createBtnAddItem();
@@ -117,7 +117,7 @@ export class ImproveItemsView extends EventEmitter {
       'div',
       { className: 'improves_items' },
       h3ImprovesItem,
-      div,
+      divItemsLists,
       buttonAddItem,
       divMyModal
     );
