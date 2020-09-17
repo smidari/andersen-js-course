@@ -43,9 +43,13 @@ export class SecretShopModel extends EventEmitter {
 
   checkItems() {
     if (this.improveItemSelected && this.mainItemsSelected.length > 1) {
-      if (
-        this.mainItemsSelected.every(item => this.improveItemSelected.include.includes(item.id))
-      ) {
+      const check = this.mainItemsSelected.every(item => {
+        if (this.improveItemSelected) {
+          return this.improveItemSelected.include.includes(item.id);
+        }
+        return item;
+      });
+      if (check) {
         this.myItems = [...this.myItems, this.improveItemSelected];
         save(MY_ITEMS, this.myItems);
         this.emit(SUCCSESS_CRAFT_ITEM, this.improveItemSelected);

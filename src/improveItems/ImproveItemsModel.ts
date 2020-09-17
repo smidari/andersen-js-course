@@ -23,7 +23,7 @@ export class ImproveItemsModel extends EventEmitter {
     save(IMPROVES_ITEMS, this.items);
   }
 
-  addNewItem(data: any) {
+  addNewItem(data: { name: string; mainItems: Array<string> }) {
     const newItem = new ItemImprove(data.name, data.mainItems);
     this._items = [...this._items, newItem];
     save(IMPROVES_ITEMS, this.items);

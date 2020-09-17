@@ -21,10 +21,9 @@ export class ImproveItemsController {
   }
 
   getItemsFromLocalStorage() {
-    // change the name to the id in the include property
+    // change name to id in the include property
     let selectedImproveItems: Array<ImproveItemDefault> = improvesItemsDefault;
     const mainItems: Array<MainItem> = load(MAIN_ITEMS);
-    console.log(mainItems);
     selectedImproveItems = selectedImproveItems.map(item => {
       item.include = item.include.map(nameItem => {
         if (mainItems) {
@@ -51,7 +50,16 @@ export class ImproveItemsController {
 
   getMainItemsFromLocalStorage = () => (load(MAIN_ITEMS) ? load(MAIN_ITEMS) : []);
 
-  addNewItem = (data: ImprovesItem) => {
+  addNewItem = (data: { name: string; mainItems: Array<string> }) => {
+    // change nameItem to id in array mainItems
+    const mainItemsFromLS: Array<MainItem> = load(MAIN_ITEMS);
+    data.mainItems = data.mainItems.map(nameItem => {
+      const findItem = mainItemsFromLS.find(elem => elem.name === nameItem);
+      if (findItem) {
+        nameItem = findItem.id;
+      }
+      return nameItem;
+    });
     this.model.addNewItem(data);
     this.view.render(this.model.items, this.getMainItemsFromLocalStorage());
   };
