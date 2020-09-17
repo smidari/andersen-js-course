@@ -10,7 +10,9 @@
     "build": "webpack",
     "lint": "eslint --debug src/",
     "lint:write": "eslint --debug src/ --fix",
-    "prettier": "prettier --write src/**/*.js"
+    "prettier": "prettier --write src/**/*.js",
+    "tsc": "tsc",
+    "tscw": "tsc --watch"
   },
   "husky": {
     "hooks": {
@@ -27,13 +29,18 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@types/node": "^14.6.2",
+    "@types/webpack": "^4.41.21",
+    "@types/webpack-dev-server": "^3.11.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
     "eslint": "5.3.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "^4.3.0",
-    "eslint-loader": "^2.1.2",
+    "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.1.0",
     "file-loader": "^4.0.0",
@@ -43,8 +50,16 @@
     "lint-staged": "^8.2.0",
     "prettier": "^1.17.1",
     "style-loader": "^0.23.1",
+    "ts-loader": "^8.0.3",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.161",
+    "@types/uuid": "^8.3.0",
+    "uuid": "^8.3.0"
   }
 }

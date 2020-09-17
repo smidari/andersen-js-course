@@ -5,7 +5,16 @@
   },
   "extends": ["airbnb-base", "prettier"],
   "plugins": ["prettier"],
+
   "rules": {
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "no-console": 0,
+    "import/prefer-default-export": "off",
+    "import/resolver": "webpack",
+    "import/no-unresolved": "off",
+    "class-methods-use-this": "off",
+    "no-shadow": "off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "no-param-reassign": "off"
   }
 }

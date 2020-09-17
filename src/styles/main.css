@@ -1,8 +1,192 @@
 body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: url('../images/background.jpg') center;
 }
 
-h1 {
+.wrapper {
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_items,
+.improves_items {
+  width: 20%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   text-align: center;
+  box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
+}
+
+h3 {
+  color: white;
+}
+
+.main_items_lists,
+.improves_items_lists {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.main_items_lists img,
+.improves_items_lists img {
+  width: 60px;
+  margin: 2px;
+  transition: 0.3s;
+}
+
+.main_items_lists img:hover,
+.improves_items_lists img:hover {
+  box-shadow: 0 2px 9px 0 rgba(255, 255, 255, 1);
+}
+
+.open_modal_btn {
+  align-self: flex-end;
+}
+.secret_shop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 40%;
+  height: 600px;
+  box-shadow: -1px -1px 17px 13px rgba(250, 243, 236, 0.49);
+}
+
+.craft_table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.my_items {
+  width: 100%;
+  text-align: center;
+}
+
+.list_my_items {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid white;
+}
+
+.secret_shop img {
+  width: 60px;
+  height: 50px;
+}
+.shop_main_items_list div,
+.shop_improve_item {
+  margin: 10px;
+  width: 60px;
+  height: 50px;
+  box-shadow: 0 2px 9px 0 rgba(255, 255, 255, 1);
+  border: 1px solid white;
+}
+
+.check, .open_modal_btn {
+  background-color: #c123de;
+  border-radius: 6px;
+  border: 1px solid #a511c0;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 11px 24px;
+  text-decoration: none;
+}
+
+.check:hover {
+  background: linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+  background-color: #a20dbd;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #adadad;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888888;
+  width: 30%;
+}
+
+.modal_content h2 {
+  align-self: center;
+  color: #9b14b3;
+}
+
+.modal_content input {
+  width: 70%;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #9b14b3;
+  border-radius: 4px;
+}
+.open_modal_btn {
+  align-self: flex-end;
+  margin-right: 10px;
+  font-size: 10px;
+  padding: 8px 11px;
+
+}
+/* The Close Button */
+.close {
+  align-self: flex-end;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #ff1715;
+  text-decoration: none;
+}
+
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  z-index: 1;
+  font-size: 10px;
+  content: attr(data-tooltip); /* Выводим текст */
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0; /* Положение подсказки */
+  background-color: rgba(155, 20, 179, 0.6);
+  color: #fff;
+  padding: 0.5em;
+  pointer-events: none;
+  opacity: 0; /* Подсказка невидима */
+  transition: 0.8s;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  top: 2em;
 }

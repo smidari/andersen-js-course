@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.ts',
+  devtool: 'inline-source-map',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -18,10 +19,16 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'ts-loader'],
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        loader: 'eslint-loader',
       },
       {
         test: /\.(svg|png|gif|jpg|webp)$/,
@@ -38,6 +45,9 @@ module.exports = {
         use: ['html-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new HtmlWebpackPlugin({
