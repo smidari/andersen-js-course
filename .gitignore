@@ -2,3 +2,5 @@ node_modules/
 dist/
 .idea
 .vscode
+src/client/node_modules/
+src/server/node_modules/

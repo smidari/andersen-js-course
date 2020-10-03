@@ -6,6 +6,14 @@
   "extends": ["airbnb-base", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "no-console" : 0,
+    "no-plusplus": "off",
+    "import/prefer-default-export": "off",
+    "no-use-before-define": "off",
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off",
+    "no-underscore-dangle": "off"
+
   }
 }
