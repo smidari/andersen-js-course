@@ -98,6 +98,7 @@ class TabsPageComponent extends WMFComponent {
     this.render();
     this.users = this.users.map(user => {
       if (user._id === this.changeUserId) {
+        // eslint-disable-next-line no-param-reassign
         user = { ...newUser };
         return user;
       }

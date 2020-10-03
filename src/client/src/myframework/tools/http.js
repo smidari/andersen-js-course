@@ -16,6 +16,7 @@ class Http {
   }
 }
 
+// eslint-disable-next-line consistent-return
 export async function sendRequest(url, method = 'GET', data = null) {
   try {
     const headers = {};
