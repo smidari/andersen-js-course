@@ -3,27 +3,25 @@ class Http {
     return sendRequest('http://localhost:3000/api/users');
   }
 
-  post(url, data) {
-    return sendRequest(url, 'POST', data);
+  post(data) {
+    return sendRequest('http://localhost:3000/api/users', 'POST', data);
   }
 
-  delete(url) {
-    return sendRequest(url, 'DELETE');
+  delete(id) {
+    return sendRequest(`http://localhost:3000/api/users/${id}`, 'DELETE');
   }
 
-  put(url, data) {
-    return sendRequest(url, 'PUT', data);
+  put(id, data) {
+    return sendRequest(`http://localhost:3000/api/users/${id}`, 'PUT', data);
   }
 }
 
-// eslint-disable-next-line consistent-return
 export async function sendRequest(url, method = 'GET', data = null) {
   try {
     const headers = {};
     let body;
 
     if (data) {
-      // @ts-ignore
       headers['Content-Type'] = 'application/json';
       body = JSON.stringify(data);
     }

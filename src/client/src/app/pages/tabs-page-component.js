@@ -61,7 +61,7 @@ class TabsPageComponent extends WMFComponent {
 
   async removeUser({ target }) {
     const id = target.getAttribute('data-id');
-    http.delete(`http://localhost:3000/api/users/${id}`);
+    http.delete(id);
     this.render();
     this.users = [...this.users.filter(user => user._id !== id)];
     this.createBodyTable();
@@ -71,7 +71,6 @@ class TabsPageComponent extends WMFComponent {
     const id = target.getAttribute('data-id');
     this.changeUserId = id;
     const changeUser = this.users.find(user => user._id === id);
-
     const fullName = document.getElementById('full-name');
     const email = document.getElementById('email');
     const mobile = document.getElementById('mobile');
@@ -90,6 +89,7 @@ class TabsPageComponent extends WMFComponent {
     const mobile = document.getElementById('mobile');
     const city = document.getElementById('city');
     const newUser = {
+      _id: this.changeUserId,
       fullName: fullName.value,
       email: email.value,
       mobile: mobile.value,
@@ -98,14 +98,13 @@ class TabsPageComponent extends WMFComponent {
     this.render();
     this.users = this.users.map(user => {
       if (user._id === this.changeUserId) {
-        // eslint-disable-next-line no-param-reassign
         user = { ...newUser };
         return user;
       }
       return user;
     });
     this.createBodyTable();
-    await http.put(`http://localhost:3000/api/users/${this.changeUserId}`, newUser);
+    await http.put(this.changeUserId, newUser);
     this.closeForm();
   }
 
