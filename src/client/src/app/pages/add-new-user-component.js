@@ -23,6 +23,7 @@ class AddNewUserPageComponent extends WMFComponent {
       city: city.value,
     };
     http.post('http://localhost:3000/api/users', newUser);
+    this.render();
   }
 }
 

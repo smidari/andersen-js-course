@@ -10,11 +10,11 @@ class Http {
   delete(url) {
     return sendRequest(url, 'DELETE');
   }
-}
 
-// function sendRequest(method, url) {
-//   return fetch(url, { method }).then(response => response.json());
-// }
+  put(url, data) {
+    return sendRequest(url, 'PUT', data);
+  }
+}
 
 // eslint-disable-next-line consistent-return
 export async function sendRequest(url, method = 'GET', data = null) {

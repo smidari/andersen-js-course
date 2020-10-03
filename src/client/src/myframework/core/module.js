@@ -1,7 +1,7 @@
 import { initComponents } from './component/init-components';
-// eslint-disable-next-line import/no-cycle
 import { initRouting } from './routing/init-routing';
 
+// базовый класс фрейморка
 export class Module {
   constructor(config) {
     this.components = config.components;

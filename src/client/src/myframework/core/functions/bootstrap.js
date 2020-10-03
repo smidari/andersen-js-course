@@ -1,3 +1,4 @@
-export function bootstrap(module) {
-  module.start();
+// запускает все приложение
+export function bootstrap(appModule) {
+  appModule.start();
 }
